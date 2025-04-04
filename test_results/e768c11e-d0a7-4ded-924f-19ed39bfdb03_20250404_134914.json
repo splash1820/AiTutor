@@ -1,0 +1,47 @@
+{
+  "test_id": "dc6b6330-5778-4780-98cc-f3f9f4b0caed",
+  "total_score": 170,
+  "max_score": 500,
+  "percentage": 34.0,
+  "questions_results": [
+    {
+      "question_id": "q1",
+      "question_number": 1,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: A compiled, general-purpose programming language",
+      "correct_answer": "A compiled, general-purpose programming language",
+      "score": 0
+    },
+    {
+      "question_id": "q2",
+      "question_number": 2,
+      "evaluation": "partially_correct",
+      "feedback": "The student's code produces the correct output, 'Hello, world!', but it has several issues.  Firstly, it uses the outdated `<iostream.h>` header file, which is non-standard C++. The correct header is `<iostream>`.  Secondly, the use of `using namespace std;` is generally discouraged as it can lead to naming conflicts. While it works in this simple example, it's bad practice for larger projects.  Finally, the student's code is missing `std::endl` or `\\n`, resulting in the output not going to the next line.  This is not a fatal error in this specific case, but good practice demands it for better readability. The omission of a return statement with value 0 also makes the program non-conforming to standard main function signature. Although many compilers allow this, it's considered bad practice, because the standard requires a return of 0 for successful execution.",
+      "correct_answer": "#include <iostream>int main() {  std::cout << \"Hello, world!\" << std::endl;  return 0;}",
+      "score": 70
+    },
+    {
+      "question_id": "q3",
+      "question_number": 3,
+      "evaluation": "not_answered",
+      "correct_answer": "Procedural programming focuses on procedures or functions that operate on data. Object-oriented programming organizes data and functions into objects, encapsulating data and methods that act upon that data. C++ supports both paradigms, allowing for flexibility in programming style.",
+      "score": 0
+    },
+    {
+      "question_id": "q4",
+      "question_number": 4,
+      "evaluation": "correct",
+      "feedback": "Your answer is correct!",
+      "correct_answer": "Web development (front-end)",
+      "score": 100
+    },
+    {
+      "question_id": "q5",
+      "question_number": 5,
+      "evaluation": "wrong",
+      "feedback": "The student's code is missing.  Without the student's code, it's impossible to evaluate correctness, code quality, efficiency, or handling of edge cases.  To get a proper evaluation, please provide the student's code.  The provided test cases only indicate what the function *should* do, not what the student's function actually *does*. The expected solution is a simple and efficient implementation of an addition function.",
+      "correct_answer": "int sum(int a, int b) {  return a + b;}",
+      "score": 0
+    }
+  ]
+}

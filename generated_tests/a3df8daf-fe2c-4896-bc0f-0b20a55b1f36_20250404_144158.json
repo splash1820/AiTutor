@@ -1,0 +1,61 @@
+{
+  "title": "Test on basic java",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "067bd4ec-a481-4fb4-a50b-97ef7e369b16",
+      "type": "mcq",
+      "text": "Which statement correctly describes the behavior of the `finally` block in a Java `try-catch-finally` statement?",
+      "options": [
+        "The `finally` block executes only if an exception is thrown within the `try` block.",
+        "The `finally` block executes only if no exception is thrown within the `try` block.",
+        "The `finally` block executes unconditionally, regardless of whether an exception is thrown or caught.",
+        "The `finally` block executes only if a `catch` block handles an exception."
+      ],
+      "answer": "The `finally` block executes unconditionally, regardless of whether an exception is thrown or caught.",
+      "explanation": "The `finally` block in Java is designed to execute cleanup code, such as closing files or releasing resources.  This cleanup is crucial regardless of whether an exception occurred.  Therefore, it always executes, whether an exception was thrown and handled or not, unless the JVM exits abnormally (e.g., `System.exit()` is called before the `finally` block)."
+    },
+    {
+      "id": "3afa82c7-d961-4009-aca9-276a54b741bf",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions, such as null or empty input arrays, and should return an empty array in such cases. The solution should be implemented using Java 8 features or higher.",
+      "answer": "def getEvenNumbers(arr):\n    \"\"\"\n    This function takes an integer array and returns a new array containing only the even numbers.\n    It handles null or empty input arrays gracefully.\n\n    Args:\n        arr: The input integer array.\n\n    Returns:\n        A new array containing only the even numbers from the input array, or an empty array if the input is null or empty.\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n    return [num for num in arr if num % 2 == 0]",
+      "test_cases": [
+        "Input: [1, 2, 3, 4, 5, 6]\nExpected Output: [2, 4, 6]",
+        "Input: []\nExpected Output: []"
+      ],
+      "explanation": "The Python solution uses list comprehension for a concise way to filter even numbers. It first checks for null or empty input, returning an empty list if so. Otherwise, it iterates through the input list, keeping only the elements divisible by 2 (even numbers).  A Java solution would use streams for a similar efficient approach."
+    },
+    {
+      "id": "4d9d6225-a52c-4c7a-bf6f-516314b97bc2",
+      "type": "descriptive",
+      "text": "Explain the concept of object-oriented programming (OOP) principles in Java, providing specific examples for each principle.  Discuss how these principles contribute to code reusability, maintainability, and scalability.",
+      "answer": "Object-Oriented Programming (OOP) is a programming paradigm that organizes code around \"objects\" rather than functions and logic.  Java is a fundamentally object-oriented language, and leveraging its OOP principles leads to more robust and manageable code.  Four core principles underpin OOP:\n\n1. **Abstraction:** Abstraction hides complex implementation details and shows only essential information to the user.  This simplifies interaction with objects.  For example, consider a `Car` class.  The user interacts with methods like `start()`, `accelerate()`, and `brake()`, without needing to know the intricate details of the engine's internal workings or the braking system's mechanics.  Abstraction allows us to use the `Car` object without understanding its inner workings.\n\n2. **Encapsulation:** Encapsulation bundles data (attributes) and methods (functions) that operate on that data within a class, protecting the data from unauthorized access or modification.  This is achieved through access modifiers like `public`, `private`, and `protected`.  For instance, in a `BankAccount` class, the `balance` attribute might be declared `private`, preventing direct access from outside the class.  Methods like `deposit()` and `withdraw()` provide controlled access to modify the balance.  This ensures data integrity.\n\n3. **Inheritance:** Inheritance allows creating new classes (child classes or subclasses) based on existing classes (parent classes or superclasses).  The child class inherits the attributes and methods of the parent class, extending or modifying its functionality.  For example, a `SportsCar` class could inherit from a `Car` class, adding attributes specific to sports cars (e.g., `turbocharged`) and potentially overriding methods like `accelerate()` to reflect enhanced performance.  Inheritance promotes code reusability and reduces redundancy.\n\n4. **Polymorphism:** Polymorphism allows objects of different classes to be treated as objects of a common type.  This is often achieved through method overriding (where a child class provides a specific implementation of a method inherited from the parent class) and method overloading (where a class has multiple methods with the same name but different parameters).  For example, a `Shape` class with a `draw()` method can be extended by `Circle`, `Square`, and `Triangle` classes, each overriding `draw()` to produce the appropriate shape.  This allows us to treat all shapes uniformly through a common interface.\n\n\nThe combined use of these principles drastically improves code quality:\n\n* **Reusability:** Inheritance allows reusing existing code, saving development time and effort.\n* **Maintainability:** Encapsulation makes code easier to maintain and debug because changes are localized.\n* **Scalability:** Well-structured OOP code is easier to expand and adapt to evolving requirements.",
+      "explanation": "A good answer should include these key points: * Definition of OOP and its core principles (Abstraction, Encapsulation, Inheritance, Polymorphism).\n* Clear and concise examples illustrating each principle in Java.  (Code examples are not strictly necessary but would significantly enhance the answer).\n* Explanation of how each principle contributes to code reusability, maintainability, and scalability.\n*  Understanding of access modifiers (`public`, `private`, `protected`) in relation to encapsulation.\n*  Discussion of method overriding and method overloading in the context of polymorphism."
+    },
+    {
+      "id": "4335c1a8-1f96-4aa5-9cf4-24c5d8877907",
+      "type": "mcq",
+      "text": "Which of the following statements regarding Java's `static` keyword is FALSE?",
+      "options": [
+        "Static methods can access only static members (variables and methods) of the class directly.",
+        "A class can have multiple static blocks, which are executed once during class loading.",
+        "Static variables are created when the class is instantiated.",
+        "Static methods can be called directly using the class name without creating an object."
+      ],
+      "answer": "Static variables are created when the class is instantiated.",
+      "explanation": "Static variables are created when the class is loaded into memory, not when an instance of the class is created.  Options A, B, and D correctly describe aspects of the `static` keyword in Java."
+    },
+    {
+      "id": "dda6376a-f269-43f3-9f4f-932263af574d",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential null or empty input arrays gracefully, returning an empty array in those cases.  The order of even numbers in the output array should be the same as their order in the input array.",
+      "answer": "def get_even_numbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n      arr: The input integer array.\n\n    Returns:\n      A new array containing only the even numbers from the input array.\n      Returns an empty array if the input is null or empty.\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n    even_numbers = [num for num in arr if num % 2 == 0]\n    return even_numbers",
+      "test_cases": [
+        "Input: [1, 2, 3, 4, 5, 6]\nExpected Output: [2, 4, 6]",
+        "Input: []\nExpected Output: []"
+      ],
+      "explanation": "The Python function `get_even_numbers` first checks if the input array `arr` is null or empty. If so, it returns an empty list. Otherwise, it uses a list comprehension to iterate through the array and select only the numbers that are divisible by 2 (even numbers).  These even numbers are collected into a new list, `even_numbers`, which is then returned.  This approach is efficient and concise. A Java equivalent would use similar logic, likely employing an ArrayList to dynamically build the result."
+    }
+  ]
+}

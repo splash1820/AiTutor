@@ -1,0 +1,37 @@
+{
+  "title": "Test on Introduction to give me fibonnacci series code in java",
+  "difficulty": "hard",
+  "questions": [
+    {
+      "id": "47529995-895c-420f-8c94-876d86547d02",
+      "type": "mcq",
+      "text": "Question 1 about Introduction to give me fibonnacci series code in java",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct option because it accurately describes the concept."
+    },
+    {
+      "id": "f6549770-b240-464f-aa14-7592b36bad19",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to give me fibonnacci series code in java",
+      "answer": "A model answer would discuss key points, principles, and examples.",
+      "explanation": "A good answer should cover the definition, examples, and applications."
+    },
+    {
+      "id": "80a5b0e0-7cb1-47e4-b063-0d3f9994717b",
+      "type": "code",
+      "text": "Write a function to solve the following problem related to Introduction to give me fibonnacci series code in java",
+      "answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "test_cases": [
+        "test case 1",
+        "test case 2"
+      ],
+      "explanation": "The solution should implement the algorithm efficiently."
+    }
+  ]
+}

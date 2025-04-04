@@ -1,0 +1,57 @@
+{
+  "title": "Test on Introduction to C++: What is C++ and its uses?",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "2bec488a-5f52-4aee-8eda-a530397eb486",
+      "type": "mcq",
+      "text": "Question 1 about Introduction to C++: What is C++ and its uses?",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "answer": "Option 1",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "685849a0-4e83-42a2-85df-5b9143412691",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to C++: What is C++ and its uses?",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "e5d75174-50b5-4c47-9317-06cc38a32443",
+      "type": "code",
+      "text": "Write a function related to Introduction to C++: What is C++ and its uses?",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "834eb881-14da-4088-93c3-1bc428a0e357",
+      "type": "mcq",
+      "text": "Question 4 about Introduction to C++: What is C++ and its uses?",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "answer": "Option 1",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "b4d3124a-2db7-4eda-a1c8-2ac361e81513",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to C++: What is C++ and its uses?",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    }
+  ]
+}

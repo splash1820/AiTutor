@@ -1,0 +1,61 @@
+{
+  "title": "Test on intro to python",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "fc5e69b9-36cf-4de8-860e-0187ad4442d2",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nx = 5\ny = 10\nz = x + y * 2\nprint(z)\n```",
+      "options": [
+        "15",
+        "25",
+        "30",
+        "10"
+      ],
+      "answer": "25",
+      "explanation": "Python follows the order of operations (PEMDAS/BODMAS).  Multiplication is performed before addition. Therefore, the calculation is:  `z = 5 + (10 * 2) = 5 + 20 = 25`. The code will print 25."
+    },
+    {
+      "id": "7f110fa6-ea45-41dc-a6db-324a5eab5215",
+      "type": "code",
+      "text": "Write a Python function that takes a list of strings as input and returns a new list containing only the strings that are palindromes (read the same forwards and backward).  Ignore case and any non-alphanumeric characters.",
+      "answer": "import re\n\ndef find_palindromes(string_list):\n    \"\"\"\n    Finds and returns palindromic strings from a list, ignoring case and non-alphanumeric characters.\n\n    Args:\n      string_list: A list of strings.\n\n    Returns:\n      A list of strings that are palindromes.  Returns an empty list if no palindromes are found.\n    \"\"\"\n    palindromes = []\n    for string in string_list:\n        processed_string = re.sub(r'[^a-zA-Z0-9]', '', string).lower()\n        if processed_string == processed_string[::-1] and len(processed_string)>0:  #Check for empty strings after processing\n            palindromes.append(string)\n    return palindromes",
+      "test_cases": [
+        "Input:  `[\"racecar\", \"hello\", \"A man, a plan, a canal: Panama\", \"world\", \"madam\"]`\nOutput: `['racecar', 'A man, a plan, a canal: Panama', 'madam']`",
+        "Input:  `[\"hello\", \"world\", \"12321\", \"python\"]`\nOutput: `['12321']`"
+      ],
+      "explanation": "The function first iterates through each string in the input list. For each string, it uses a regular expression `re.sub(r'[^a-zA-Z0-9]', '', string)` to remove all non-alphanumeric characters. Then, it converts the string to lowercase using `.lower()`.  Finally, it checks if the processed string is equal to its reverse (`processed_string[::-1]`). If it is, and the processed string is not empty (to handle cases where all characters are removed), the original string is added to the `palindromes` list. The function then returns the list of palindromes."
+    },
+    {
+      "id": "fe2e7b94-11cc-41db-9493-1012375fe0b9",
+      "type": "descriptive",
+      "text": "Explain the difference between mutable and immutable data types in Python, providing examples of each and illustrating how this distinction affects program behavior with specific scenarios.  Discuss the implications of this difference for memory management and potential pitfalls to avoid.",
+      "answer": "In Python, data types are classified as either mutable or immutable based on whether their values can be changed after creation.  This fundamental distinction significantly impacts how data is handled and influences the design of efficient and error-free programs.\n\n**Immutable Data Types:**  These data types cannot be modified after they are created.  Any operation that appears to modify an immutable object actually creates a new object with the changed value, leaving the original object untouched.  Examples include:\n\n* **Integers (int):**  If you have `x = 5` and then `x = x + 2`, you're not modifying the original integer object representing 5; you're creating a new integer object representing 7 and reassigning `x` to point to it.\n* **Floats (float):** Similar to integers, operations create new float objects.\n* **Strings (str):**  Strings are immutable.  Methods like `upper()` or `replace()` return *new* strings; the original string remains unchanged.  For example, `my_string = \"hello\"; new_string = my_string.upper()` creates `new_string` as \"HELLO\" while \"hello\" is preserved.\n* **Tuples (tuple):** Tuples are ordered, immutable collections of items.\n\n**Mutable Data Types:** These data types can be modified after creation.  Changes are made directly to the object in memory. Examples include:\n\n* **Lists (list):**  You can append, insert, remove, or modify elements within a list directly.  `my_list = [1, 2, 3]; my_list.append(4)` modifies `my_list` in place.\n* **Dictionaries (dict):** You can add, remove, or update key-value pairs within a dictionary.\n* **Sets (set):** You can add or remove elements from a set.\n\n\n**Implications for Program Behavior:**\n\nThe mutability of an object affects how it's passed to functions.  When passing immutable objects, the function receives a copy of the value; any changes made inside the function do not affect the original object.  However, when passing mutable objects, the function receives a reference to the object itself.  Any modifications within the function directly impact the original object. This can lead to unexpected side effects if not carefully managed.\n\n**Memory Management:**  Immutable objects can be more efficiently managed by the interpreter because the interpreter can safely share references to them, reducing memory consumption.  Changes create new objects, leading to garbage collection of the original. Mutable objects require more careful management as modifications may have broader impacts on the program.\n\n**Potential Pitfalls:**\n\n* **Accidental modification of shared mutable objects:**  If multiple parts of your code share a reference to the same mutable object, unintentional changes in one part can affect other parts unexpectedly.\n* **Debugging challenges:**  Tracing changes to mutable objects can be more difficult than with immutable objects due to in-place modifications.",
+      "explanation": "A good answer should include these key points: * **Definition of mutable and immutable:** Clear explanation of what each term means.\n* **Examples of each data type:**  Concrete examples are crucial for understanding.\n* **Behavior when passed to functions:**  Explanation of pass-by-value vs. pass-by-reference implications.\n* **Memory management implications:**  Discussion of how mutability affects memory usage and garbage collection.\n* **Potential pitfalls and how to avoid them:**  Addressing the challenges and providing solutions to common problems related to mutable objects.  (e.g., creating copies to avoid unintended side effects).\n* **Specific scenarios illustrating differences:** Concrete examples demonstrating the impact of mutability on program behavior are essential to a complete answer."
+    },
+    {
+      "id": "e27f7d53-b706-4294-9974-f55778b2f8df",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nx = 5\ny = 10\nz = x + y\nprint(str(z) + \" \" + str(x))\n```",
+      "options": [
+        "15 5",
+        "155",
+        "5 15",
+        "Error: cannot concatenate 'str' and 'int'"
+      ],
+      "answer": "15 5",
+      "explanation": "The code first calculates `z` as 15 (5 + 10). Then, it converts both `z` and `x` to strings using `str()` before concatenating them with a space in between.  Therefore, the output is \"15 5\"."
+    },
+    {
+      "id": "dac91fc3-0ec0-45e5-871d-3f823dc8f32f",
+      "type": "code",
+      "text": "Write a Python function that takes a list of strings as input and returns a new list containing only the strings that start with a vowel.  The function should be case-insensitive (e.g., \"apple\" and \"Apple\" should both be considered as starting with a vowel).",
+      "answer": "def strings_starting_with_vowel(string_list):\n    \"\"\"\n    Filters a list of strings to return only those starting with a vowel (case-insensitive).\n\n    Args:\n        string_list: A list of strings.\n\n    Returns:\n        A new list containing only the strings that start with a vowel.  Returns an empty list if the input is invalid or no strings start with a vowel.\n    \"\"\"\n    vowels = \"aeiouAEIOU\"\n    if not isinstance(string_list, list):\n        return []  #Handle invalid input\n\n    result = []\n    for string in string_list:\n        if isinstance(string, str) and len(string) > 0 and string[0] in vowels:\n            result.append(string)\n    return result",
+      "test_cases": [
+        "Input:  `[\"apple\", \"banana\", \"orange\", \"Avocado\", \"Eggplant\"]`\nOutput: `['apple', 'Avocado', 'Eggplant']`",
+        "Input: `[\"123\", \"xyz\", \"banana\", 123]`\nOutput: `[]`"
+      ],
+      "explanation": "The function first checks if the input is a list. If not, it returns an empty list to handle invalid input. It then iterates through each string in the input list. For each string, it checks if it's a string, has at least one character, and if the first character is present in the `vowels` string (case-insensitive check). If all conditions are true, the string is added to the `result` list. Finally, the function returns the `result` list."
+    }
+  ]
+}

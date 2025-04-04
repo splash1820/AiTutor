@@ -1,0 +1,37 @@
+{
+  "title": "Test on Introduction to what is int data type in c++",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": "e1ad8212-19bf-414c-9f93-9b15a9511950",
+      "type": "mcq",
+      "text": "Question 1 about Introduction to what is int data type in c++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct option because it accurately describes the concept."
+    },
+    {
+      "id": "65198a1a-5c2b-48df-b1a9-f24ccf8a42a8",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to what is int data type in c++",
+      "answer": "A model answer would discuss key points, principles, and examples.",
+      "explanation": "A good answer should cover the definition, examples, and applications."
+    },
+    {
+      "id": "f48ff0be-d8a6-4de7-971a-d051273dfb41",
+      "type": "code",
+      "text": "Write a function to solve the following problem related to Introduction to what is int data type in c++",
+      "answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "test_cases": [
+        "test case 1",
+        "test case 2"
+      ],
+      "explanation": "The solution should implement the algorithm efficiently."
+    }
+  ]
+}

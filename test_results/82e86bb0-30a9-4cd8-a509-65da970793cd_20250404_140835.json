@@ -1,0 +1,47 @@
+{
+  "test_id": "8b9e7db9-3ee8-4d3c-bb23-a8e26330e96b",
+  "total_score": 100,
+  "max_score": 500,
+  "percentage": 20.0,
+  "questions_results": [
+    {
+      "question_id": "01fb59da-17fe-4ecd-9994-4981a48020c8",
+      "question_number": 1,
+      "evaluation": "correct",
+      "feedback": "Your answer is correct!",
+      "correct_answer": "Static methods can be overridden in subclasses.",
+      "score": 100
+    },
+    {
+      "question_id": "2e9e0622-f99a-49d4-871a-7fb5a0ca1c29",
+      "question_number": 2,
+      "evaluation": "not_answered",
+      "correct_answer": "def getEvenNumbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n      arr: The input integer array.\n\n    Returns:\n      A new array containing only the even numbers from the input array.\n      Returns an empty array if the input is null, empty, or contains no even numbers.\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n\n    even_numbers = []\n    for num in arr:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+      "score": 0
+    },
+    {
+      "question_id": "806710df-3249-436d-9873-7bf9f1db3d0c",
+      "question_number": 3,
+      "evaluation": "wrong",
+      "feedback": "The student's answer is completely incorrect and provides no relevant information about the question.  The response 'dfg' shows a complete lack of understanding of the concepts of == and .equals() in Java.  The student needs to review the fundamental differences between comparing primitive data types and objects in Java, and the importance of overriding the equals() method for custom classes.  The model answer provides a comprehensive explanation, including examples and scenarios, which the student should study carefully.",
+      "correct_answer": "In Java, both `==` and `.equals()` are used for comparison, but they operate differently and are suitable for different scenarios.\n\n`==` (the equality operator) compares the memory addresses of two variables.  For primitive data types (like `int`, `float`, `boolean`), it directly compares their values. However, for objects, it checks if both variables refer to the *same* object in memory.  If they point to the same object, it returns `true`; otherwise, it returns `false`, even if the objects have the same content.\n\n`.equals()` (a method defined in the `Object` class, and often overridden in other classes), compares the *content* of two objects.  The default implementation in `Object` behaves the same as `==`, comparing memory addresses.  However, many classes override this method to provide a meaningful comparison of their internal state.  For example, the `String` class overrides `.equals()` to compare the sequence of characters in the strings.  For primitive types, `.equals()` cannot be directly used; you must wrap them in their corresponding wrapper classes (e.g., `Integer`, `Float`) before comparison.\n\n\n**Examples:**\n\n```java\nint x = 5;\nint y = 5;\nSystem.out.println(x == y); // true (primitive comparison)\n\nInteger a = new Integer(5);\nInteger b = new Integer(5);\nSystem.out.println(a == b); // false (object comparison using ==, different memory addresses)\nSystem.out.println(a.equals(b)); // true (content comparison using .equals())\n\n\nString str1 = \"hello\";\nString str2 = \"hello\";\nSystem.out.println(str1 == str2); // true (Java String pool optimization might cause this)\nString str3 = new String(\"hello\");\nString str4 = new String(\"hello\");\nSystem.out.println(str3 == str4); // false (different objects in memory)\nSystem.out.println(str3.equals(str4)); // true (content comparison)\n\n\nPerson p1 = new Person(\"Alice\", 30);\nPerson p2 = new Person(\"Alice\", 30);\nSystem.out.println(p1 == p2); // false (different objects)\nSystem.out.println(p1.equals(p2)); // false (unless equals() is overridden in the Person class)\n\n```\n\n**When to use which:**\n\nUse `==` to compare primitive types or to check if two object references point to the same object in memory. Use `.equals()` to compare the content of objects, but only after ensuring that the `equals()` method has been properly overridden in the relevant class to reflect a meaningful content comparison.  Failing to override `equals()` correctly can lead to unexpected behavior.",
+      "score": 0
+    },
+    {
+      "question_id": "77db3130-0053-4329-8327-778960d95965",
+      "question_number": 4,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: A class can have multiple static constructors to handle different initialization scenarios.",
+      "correct_answer": "A class can have multiple static constructors to handle different initialization scenarios.",
+      "score": 0
+    },
+    {
+      "question_id": "442f0594-727a-423e-b49c-1330429d4fbe",
+      "question_number": 5,
+      "evaluation": "wrong",
+      "feedback": "The student's code is completely incorrect. It only contains the characters 'ccccccc' and does not implement the required functionality.  The code fails to handle the input array, check for even numbers, and return the correct output. It does not address any edge cases such as null or empty input arrays.  To receive a passing grade, the student needs to write a function that iterates through the input array, identifies even numbers using the modulo operator, and appends them to a new array which is then returned.  The function also needs to handle the edge case of an empty or null input array, returning an empty array in those scenarios.",
+      "correct_answer": "def getEvenNumbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n        arr: The input integer array.\n\n    Returns:\n        A new array containing only the even numbers from the input array.\n        Returns an empty array if the input is null or empty, or contains no even numbers.\n\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n\n    even_numbers = []\n    for num in arr:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+      "score": 0
+    }
+  ]
+}

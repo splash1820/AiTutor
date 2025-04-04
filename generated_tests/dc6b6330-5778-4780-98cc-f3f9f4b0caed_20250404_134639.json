@@ -1,0 +1,60 @@
+{
+  "title": "Introduction to C++: What is C++ and its uses?",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "text": "Which of the following best describes C++?",
+      "options": [
+        "A scripting language",
+        "A purely object-oriented language",
+        "A compiled, general-purpose programming language",
+        "An interpreted, declarative language"
+      ],
+      "answer": "A compiled, general-purpose programming language",
+      "explanation": "C++ is a compiled language, meaning the code is translated into machine code before execution. It's general-purpose, suitable for various applications."
+    },
+    {
+      "id": "q2",
+      "type": "code",
+      "text": "Write a C++ program that prints \"Hello, world!\" to the console.",
+      "answer": "#include <iostream>int main() {  std::cout << \"Hello, world!\" << std::endl;  return 0;}",
+      "test_cases": [
+        "Output should be: Hello, world!"
+      ],
+      "explanation": "This code includes the iostream library for input/output operations. The main function is the entry point of the program, printing the message and returning 0 to indicate successful execution."
+    },
+    {
+      "id": "q3",
+      "type": "descriptive",
+      "text": "Explain the difference between procedural programming and object-oriented programming in the context of C++.",
+      "answer": "Procedural programming focuses on procedures or functions that operate on data. Object-oriented programming organizes data and functions into objects, encapsulating data and methods that act upon that data. C++ supports both paradigms, allowing for flexibility in programming style.",
+      "explanation": "A good answer should highlight the key differences: procedures vs. objects, data encapsulation, and the benefits of each approach.  Mentioning C++'s support for both is crucial."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "text": "Which of the following is NOT a common use case for C++?",
+      "options": [
+        "Game development",
+        "Operating system development",
+        "Web development (front-end)",
+        "High-performance computing"
+      ],
+      "answer": "Web development (front-end)",
+      "explanation": "While C++ can be used for back-end web development (servers), it's less common for front-end development which typically uses languages like JavaScript, HTML, and CSS."
+    },
+    {
+      "id": "q5",
+      "type": "code",
+      "text": "Write a C++ function that takes two integers as input and returns their sum.",
+      "answer": "int sum(int a, int b) {  return a + b;}",
+      "test_cases": [
+        "sum(5, 3) should return 8",
+        "sum(-2, 10) should return 8"
+      ],
+      "explanation": "This function defines a simple addition operation. It takes two integer arguments and returns their sum.  The test cases demonstrate the function's correctness with both positive and negative numbers."
+    }
+  ]
+}

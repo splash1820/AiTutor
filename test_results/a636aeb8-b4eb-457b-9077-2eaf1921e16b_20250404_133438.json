@@ -1,0 +1,44 @@
+{
+  "test_id": "c4f43aad-14fb-41a6-b721-b584de6ff83b",
+  "total_score": 0,
+  "max_score": 500,
+  "percentage": 0.0,
+  "questions_results": [
+    {
+      "question_id": "93aa6dc6-66d0-46e8-a2bf-53a3ccfa93f5",
+      "question_number": 1,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: Option 1",
+      "correct_answer": "Option 1",
+      "score": 0
+    },
+    {
+      "question_id": "4c425514-67c6-46b6-9bcd-3d388a7d42f7",
+      "question_number": 2,
+      "evaluation": "not_answered",
+      "correct_answer": "A detailed answer discussing key points and examples.",
+      "score": 0
+    },
+    {
+      "question_id": "9b604195-2b28-4f6a-a030-5f3729acec6b",
+      "question_number": 3,
+      "evaluation": "not_answered",
+      "correct_answer": "def solution():\n    pass",
+      "score": 0
+    },
+    {
+      "question_id": "b820c217-efe9-47f2-b813-f84d581c68ed",
+      "question_number": 4,
+      "evaluation": "not_answered",
+      "correct_answer": "Option 1",
+      "score": 0
+    },
+    {
+      "question_id": "cc225993-8170-41e4-a261-38c484e0f491",
+      "question_number": 5,
+      "evaluation": "not_answered",
+      "correct_answer": "A detailed answer discussing key points and examples.",
+      "score": 0
+    }
+  ]
+}

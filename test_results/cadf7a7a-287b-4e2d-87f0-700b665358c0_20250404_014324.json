@@ -1,0 +1,43 @@
+{
+  "test_id": "6ac30b2a-6f4b-42aa-a18c-45cfa0e6a7e7",
+  "total_score": 0,
+  "max_score": 500,
+  "percentage": 0.0,
+  "questions_results": [
+    {
+      "question_id": 1,
+      "question_number": 1,
+      "evaluation": "not_answered",
+      "correct_answer": "13",
+      "score": 0
+    },
+    {
+      "question_id": 2,
+      "question_number": 2,
+      "evaluation": "not_answered",
+      "correct_answer": "long a = 0, b = 1, c; \nfor(int i=0; i< 5; i++){\n    c = a + b; \n    a = b; \n    b = c;}\nSystem.out.println(a);",
+      "score": 0
+    },
+    {
+      "question_id": 3,
+      "question_number": 3,
+      "evaluation": "not_answered",
+      "correct_answer": "The `Scanner` class is used to get user input from the console.  In the Fibonacci code, it's used to prompt the user to enter the desired number of terms in the sequence. The `nextInt()` method reads an integer from the input.",
+      "score": 0
+    },
+    {
+      "question_id": 4,
+      "question_number": 4,
+      "evaluation": "not_answered",
+      "correct_answer": "Long can store larger values than int, preventing overflow for larger Fibonacci numbers",
+      "score": 0
+    },
+    {
+      "question_id": 5,
+      "question_number": 5,
+      "evaluation": "not_answered",
+      "correct_answer": "import java.util.Scanner;\n\npublic class Fibonacci {\n    public static void main(String[] args) {\n        long a = 0, b = 1, c;\n        System.out.print(\"Fibonacci Series: \");\n        System.out.print(a + \" \");\n        System.out.print(b + \" \");\n        while (b <= 100) {\n            c = a + b;\n            System.out.print(c + \" \");\n            a = b;\n            b = c;\n        }\n        System.out.println();\n    }\n}",
+      "score": 0
+    }
+  ]
+}

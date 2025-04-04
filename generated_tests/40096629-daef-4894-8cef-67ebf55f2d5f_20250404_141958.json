@@ -1,0 +1,112 @@
+{
+  "title": "Test on Introduction to what is int data type in c++",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "8be9385d-edec-4d65-8b7a-917f8ba9f2ca",
+      "type": "mcq",
+      "text": "Which of the following statements about the `int` data type in C++ is FALSE?",
+      "options": [
+        "`int` is used to store whole numbers.",
+        "`int` can store both positive and negative numbers, including zero.",
+        "`int` can store numbers with fractional parts, like 3.14.",
+        "The size and range of an `int` can vary depending on the computer's architecture."
+      ],
+      "answer": "`int` can store numbers with fractional parts, like 3.14.",
+      "explanation": "`int` in C++ is specifically designed to hold only whole numbers (integers).  Numbers with decimal points require the use of floating-point data types like `float` or `double`."
+    },
+    {
+      "id": "419ecb3d-6fbc-4b6f-922b-a425272fb04a",
+      "type": "code",
+      "text": "Write a C++ program that demonstrates the use of the `int` data type. The program should take two integer inputs from the user, representing the number of apples and oranges. It should then calculate and display the total number of fruits, as well as the result of dividing the number of apples by the number of oranges (integer division).  Handle potential integer division issues by checking if the number of oranges is zero before performing the division.",
+      "answer": "```cpp\n#include <iostream>\n\nusing namespace std;\n\nint main() {\n  int numApples, numOranges;\n\n  cout << \"Enter the number of apples: \";\n  cin >> numApples;\n\n  cout << \"Enter the number of oranges: \";\n  cin >> numOranges;\n\n  int totalFruits = numApples + numOranges;\n  cout << \"Total number of fruits: \" << totalFruits << endl;\n\n  if (numOranges != 0) {\n    int applesPerOrange = numApples / numOranges;\n    cout << \"Apples per orange (integer division): \" << applesPerOrange << endl;\n  } else {\n    cout << \"Cannot divide by zero!\" << endl;\n  }\n\n  return 0;\n}\n```",
+      "test_cases": [
+        "Input:\nEnter the number of apples: 10\nEnter the number of oranges: 5\nOutput:\nTotal number of fruits: 15\nApples per orange (integer division): 2",
+        "Input:\nEnter the number of apples: 7\nEnter the number of oranges: 0\nOutput:\nTotal number of fruits: 7\nCannot divide by zero!"
+      ],
+      "explanation": "The solution first prompts the user to enter the number of apples and oranges, storing them as integer variables. It then calculates the total number of fruits by adding the two inputs.  Crucially, it checks if the number of oranges is zero before performing the division to prevent a runtime error. If the number of oranges is non-zero, it performs integer division and displays the result. Otherwise, it prints an error message indicating division by zero is not allowed."
+    },
+    {
+      "id": "1cb9abbd-784b-4d73-908e-c5ac9a03c3ea",
+      "type": "descriptive",
+      "text": "Explain the characteristics of the `int` data type in C++, including its declaration, initialization, usage, limitations (such as overflow and integer division), and provide real-world examples of its application in programming.  Illustrate your explanation with code examples demonstrating its proper use and potential pitfalls.",
+      "answer": "The `int` data type in C++ is a fundamental integer data type used to store whole numbers (integers).  It represents numbers without any fractional or decimal part, encompassing positive, negative, and zero values.  For example, -10, 0, 5, 1000 are valid `int` values, whereas 3.14 is not (floating-point types like `float` or `double` are needed for such values).\n\n\n**Declaration and Initialization:**\n\n`int` variables are declared using the following syntax:\n\n```c++\nint myInteger; // Declares an integer variable named 'myInteger' without initialization.\nint anotherInt = 10; // Declares and initializes 'anotherInt' with the value 10.\n```\n\nThe first declaration creates an uninitialized `int` variable, while the second declares and immediately assigns a value.\n\n\n**Usage:**\n\n`int` variables can be used in various arithmetic operations:\n\n```c++\n#include <iostream>\n\nint main() {\n  int age = 30;\n  int quantity = 5;\n  int sum = age + quantity;\n  int difference = age - quantity;\n  int product = age * quantity;\n  int quotient = age / quantity; // Integer division: result will be 6\n\n  std::cout << \"Sum: \" << sum << std::endl;      // Output: 35\n  std::cout << \"Difference: \" << difference << std::endl; // Output: 25\n  std::cout << \"Product: \" << product << std::endl;    // Output: 150\n  std::cout << \"Quotient: \" << quotient << std::endl;   // Output: 6\n  return 0;\n}\n```\n\n**Limitations:**\n\n1. **Integer Overflow:**  `int` variables have a limited range depending on the system architecture (typically 4 bytes on 32-bit systems, 8 bytes on 64-bit). Exceeding this range results in integer overflow, leading to unpredictable behavior. For example, if the maximum value for an `int` is 2,147,483,647 and you add 1 to it, you'll likely get a negative number.\n\n2. **Integer Division:**  When dividing two integers, the result is an integer; any fractional part is truncated.  `7 / 2` results in `3`, not `3.5`.\n\n\n**Real-World Applications:**\n\n`int` is extensively used for:\n\n* **Counters:** Loop counters, event counters.\n* **Indices:** Accessing elements in arrays.\n* **Counts:**  Counting objects, items, etc.\n* **Years:** Representing calendar years (although for very large numbers, `long long` might be more appropriate).\n\n\n**Example demonstrating overflow:**\n\n```c++\n#include <iostream>\n#include <limits> // For numeric_limits\n\nint main() {\n  int maxInt = std::numeric_limits<int>::max();\n  std::cout << \"Maximum int value: \" << maxInt << std::endl;\n  int overflow = maxInt + 1;\n  std::cout << \"Overflow result: \" << overflow << std::endl; // Likely a very large negative number\n  return 0;\n}\n```\n\nThis code illustrates how exceeding the maximum `int` value causes an overflow.",
+      "explanation": "A good answer should include these key points: * Definition and purpose of `int`\n* Declaration and initialization syntax\n* Arithmetic operations with `int`\n* Integer overflow and its consequences\n* Integer division truncation\n* Real-world applications (examples)\n* Code examples demonstrating usage and potential pitfalls (especially overflow and integer division)\n* Understanding the range limitations of `int` based on system architecture."
+    },
+    {
+      "id": "e284ad94-ff4a-4cb0-9c85-91a43c5656f2",
+      "type": "mcq",
+      "text": "Which of the following statements about the `int` data type in C++ is FALSE?",
+      "options": [
+        "`int` is used to store whole numbers.",
+        "`int` can store both positive and negative numbers, including zero.",
+        "`int` can accurately store numbers with fractional parts, like 3.14.",
+        "The size and range of an `int` can vary depending on the computer's architecture."
+      ],
+      "answer": "`int` can accurately store numbers with fractional parts, like 3.14.",
+      "explanation": "The statement that `int` can store numbers with fractional parts is false.  `int` is designed to hold only whole numbers;  numbers with decimal points require floating-point data types like `float` or `double`."
+    },
+    {
+      "id": "65cfc6af-041a-45c1-a43e-438b6c0a54b9",
+      "type": "code",
+      "text": "Write a C++ program that demonstrates the use of the `int` data type. The program should take two integer inputs from the user, perform addition, subtraction, multiplication, and division operations on them, and display the results.  Handle potential integer division issues by displaying a message if division results in a non-integer value (i.e., a floating point number).  The program should also check for integer overflow in addition and subtraction.  Assume a 32-bit `int` for this problem and its approximate range of -2,147,483,648 to 2,147,483,647.",
+      "answer": "```cpp\n#include <iostream>\n#include <limits> //for numeric_limits\n\nusing namespace std;\n\nint main() {\n  int num1, num2;\n\n  cout << \"Enter two integers: \";\n  cin >> num1 >> num2;\n\n  //Addition with overflow check\n  long long sum = (long long)num1 + num2;\n  if (sum > numeric_limits<int>::max() || sum < numeric_limits<int>::min()){\n    cout << \"Addition resulted in integer overflow.\" << endl;\n  } else {\n    cout << \"Sum: \" << sum << endl;\n  }\n\n  //Subtraction with overflow check\n  long long diff = (long long)num1 - num2;\n  if (diff > numeric_limits<int>::max() || diff < numeric_limits<int>::min()){\n    cout << \"Subtraction resulted in integer overflow.\" << endl;\n  } else {\n    cout << \"Difference: \" << diff << endl;\n  }\n\n  cout << \"Product: \" << (long long)num1 * num2 << endl; //Multiplication\n\n  if (num2 == 0) {\n    cout << \"Division by zero is not allowed.\" << endl;\n  } else if ( (double)num1 / num2 != (int) ((double)num1 / num2) ) {\n    cout << \"Division results in a non-integer value.\" << endl;\n  } else {\n    cout << \"Quotient: \" << num1 / num2 << endl; //Integer Division\n  }\n\n  return 0;\n}\n```",
+      "test_cases": [
+        "Input: 10 5\nOutput:\nSum: 15\nDifference: 5\nProduct: 50\nQuotient: 2",
+        "Input: 2147483647 1\nOutput:\nSum: Addition resulted in integer overflow.\nDifference: 2147483646\nProduct: 4611686014132420609\nQuotient: 2147483647"
+      ],
+      "explanation": "The solution takes two integer inputs. It performs addition, subtraction, multiplication, and division.  It uses `long long` for addition and subtraction to check for overflow before casting back to `int` if no overflow occurred.  It handles division by zero and non-integer division results appropriately, displaying informative messages to the user in these cases. The `numeric_limits` is used to get the maximum and minimum values of an `int`."
+    },
+    {
+      "id": "7624bed0-3447-4034-9128-09ecdc2996ae",
+      "type": "descriptive",
+      "text": "Explain the `int` data type in C++, covering its declaration, initialization, usage, size and range limitations, potential pitfalls (like overflow and integer division), and provide at least three real-world examples of its application in a program.",
+      "answer": "The `int` data type in C++ is a fundamental data type used to store whole numbers (integers).  These integers can be positive, negative, or zero, but crucially, they cannot store fractional or decimal parts.  This is different from floating-point types like `float` or `double`, which are designed for numbers with decimal points.\n\n**Declaration and Initialization:**\n\n`int` variables are declared using the keyword `int` followed by the variable name.  They can be initialized at the time of declaration or later in the program.\n\n```c++\nint age;          // Declares an integer variable named 'age' without initialization.\nint quantity = 5; // Declares and initializes 'quantity' to 5.\nint sum = 0;     // Declares and initializes 'sum' to 0.\n```\n\n**Usage:**\n\n`int` variables are used in arithmetic operations, assignments, and comparisons within a C++ program.\n\n```c++\nint x = 10;\nint y = 5;\nint z = x + y; // z will be 15\n```\n\n**Size and Range:**\n\nThe size and range of an `int` are dependent on the system's architecture (32-bit or 64-bit).  A typical 32-bit `int` uses 4 bytes of memory and has a range of approximately -2,147,483,648 to 2,147,483,647.  A 64-bit `int` has a significantly larger range.  It's crucial to be aware of this range to avoid integer overflow.\n\n**Potential Pitfalls:**\n\n* **Integer Overflow:** If an arithmetic operation results in a value outside the range of the `int` type, integer overflow occurs. This can lead to unpredictable results and program errors. For example, adding 1 to the maximum value of a 32-bit `int` will result in the minimum value.\n\n* **Integer Division:** Dividing two integers results in an integer result; the fractional part is truncated.  For instance, `7 / 2` equals `3`, not `3.5`.  To obtain a floating-point result, cast one of the operands to a `float` or `double`.\n\n\n**Real-World Applications:**\n\n1. **Counting Inventory:**  An `int` can store the number of items in stock.  For example: `int numItemsInStock = 100;`\n\n2. **Array Indexing:**  `int` is commonly used as an index to access elements within an array.  For example: `int arrayIndex = 5;`\n\n3. **Loop Counters:**  `int`s are frequently used as counters in loops. For example:\n\n   ```c++\n   for (int i = 0; i < 10; ++i) {\n       // Code to be executed 10 times.\n   }\n   ```\n\n\nIn summary, the `int` data type is a fundamental and widely used tool for handling whole numbers in C++. Understanding its limitations, particularly regarding size and range, is essential for writing robust and error-free code.",
+      "explanation": "A good answer should include these key points: * Definition of `int` and its inability to store fractional values.\n* Declaration and initialization syntax.\n* Usage in arithmetic operations and assignments.\n* Explanation of size and range limitations (mentioning 32-bit vs 64-bit implications).\n* Detailed explanation of integer overflow and integer division pitfalls, including examples.\n* At least three distinct real-world examples of `int` usage in programming (e.g., counting, indexing, loop counters).  The examples should demonstrate understanding of the practical applications.  A code snippet for at least one example would enhance the answer.\n* Clear and concise language; the answer should be easy to understand."
+    },
+    {
+      "id": "864dbdba-4e73-4edb-903b-5e849bbddee8",
+      "type": "mcq",
+      "text": "Which of the following statements about the `int` data type in C++ is FALSE?",
+      "options": [
+        "`int` can store whole numbers, including positive, negative, and zero.",
+        "`int` can store numbers with fractional parts (e.g., 3.14).",
+        "The size and range of an `int` can vary depending on the computer's architecture.",
+        "Declaring an `int` variable involves using the `int` keyword followed by the variable name."
+      ],
+      "answer": "`int` can store numbers with fractional parts (e.g., 3.14).",
+      "explanation": "`int` in C++ is specifically designed to store only whole numbers (integers).  Numbers with decimal points require floating-point data types like `float` or `double`. Option B is false because it contradicts this fundamental characteristic of the `int` data type."
+    },
+    {
+      "id": "75055957-ab0e-4c94-b51c-f7625d1077b5",
+      "type": "code",
+      "text": "Write a C++ program that demonstrates the use of the `int` data type. The program should take two integer inputs from the user, perform addition, subtraction, multiplication, and integer division on them, and print the results.  The program should also handle potential integer overflow by checking if the result of any operation exceeds the maximum or minimum value of a signed 32-bit integer (approximately -2,147,483,648 to 2,147,483,647).  If overflow occurs, print an appropriate message instead of the result.",
+      "answer": "```cpp\n#include <iostream>\n#include <limits> // Required for numeric_limits\n\nusing namespace std;\n\nint main() {\n  int num1, num2;\n\n  cout << \"Enter two integers: \";\n  cin >> num1 >> num2;\n\n  long long sum = (long long)num1 + num2;\n  long long diff = (long long)num1 - num2;\n  long long prod = (long long)num1 * num2;\n  long long quo = (long long)num1 / num2;\n\n\n  // Check for overflow using long long to avoid issues with int comparison in the overflow condition\n  if (sum > numeric_limits<int>::max() || sum < numeric_limits<int>::min()) {\n    cout << \"Sum resulted in overflow.\" << endl;\n  } else {\n    cout << \"Sum: \" << sum << endl;\n  }\n\n  if (diff > numeric_limits<int>::max() || diff < numeric_limits<int>::min()) {\n    cout << \"Difference resulted in overflow.\" << endl;\n  } else {\n    cout << \"Difference: \" << diff << endl;\n  }\n\n  if (prod > numeric_limits<int>::max() || prod < numeric_limits<int>::min()) {\n    cout << \"Product resulted in overflow.\" << endl;\n  } else {\n    cout << \"Product: \" << prod << endl;\n  }\n\n  if (quo > numeric_limits<int>::max() || quo < numeric_limits<int>::min()) {\n      cout << \"Quotient resulted in overflow.\" << endl;\n  } else {\n    cout << \"Quotient: \" << quo << endl;\n  }\n\n\n  return 0;\n}\n```",
+      "test_cases": [
+        "Input: 10 5\nOutput:\nSum: 15\nDifference: 5\nProduct: 50\nQuotient: 2",
+        "Input: 2147483647 1\nOutput:\nSum resulted in overflow.\nDifference: 2147483646\nProduct resulted in overflow.\nQuotient: 2147483647"
+      ],
+      "explanation": "The solution takes two integer inputs, performs the four basic arithmetic operations, and uses type casting to `long long` to check for overflow before printing the results. If any operation results in overflow (exceeds the range of a 32-bit integer), it prints an overflow message.  `numeric_limits` from the `<limits>` header provides the maximum and minimum values for the `int` data type."
+    },
+    {
+      "id": "3654f223-3a8c-40dc-852f-b0b2fe6c5a2f",
+      "type": "descriptive",
+      "text": "Explain the `int` data type in C++, including its declaration, initialization, usage, size and range limitations, potential pitfalls (like overflow and integer division), and provide at least three real-world examples of its application in a program.",
+      "answer": "The `int` data type in C++ is a fundamental data type used to store integer values \u2013 whole numbers without any fractional or decimal part.  These integers can be positive, negative, or zero.  For example, -10, 0, 5, 1000 are valid `int` values, while 3.14 is not (floating-point numbers require `float` or `double`).\n\n**Declaration and Initialization:**\n\n`int` variables are declared using the `int` keyword followed by the variable name.  They can be initialized during declaration or later in the program:\n\n```c++\nint myInt;       // Declaration only; myInt has an undefined value.\nint anotherInt = 25; // Declaration and initialization; anotherInt is 25.\n```\n\n**Usage:**\n\n`int` variables can be used in arithmetic operations (+, -, *, /, %), comparisons (==, !=, <, >, <=, >=), and assignments (=).\n\n```c++\nint a = 10;\nint b = 5;\nint sum = a + b; // sum will be 15\nint product = a * b; // product will be 50\nint quotient = a / b; // quotient will be 2 (integer division truncates)\n```\n\n**Size and Range:**\n\nThe size and range of an `int` are platform-dependent (32-bit or 64-bit systems).  On a typical 32-bit system, an `int` occupies 4 bytes (32 bits) of memory and can store values roughly from -2,147,483,648 to 2,147,483,647.  64-bit systems offer a significantly larger range.\n\n**Potential Pitfalls:**\n\n* **Integer Overflow:** If you attempt to assign a value to an `int` that exceeds its maximum or minimum value, integer overflow occurs. The result is unpredictable and can lead to unexpected program behavior.  For example, adding 1 to the maximum value of a 32-bit `int` might result in the minimum value.\n\n* **Integer Division:** When dividing two integers, the result is an integer; the fractional part is truncated.  `7 / 2` will result in `3`, not `3.5`.  To get a floating-point result, at least one of the operands should be a floating-point type (e.g., `7.0 / 2` or `7 / 2.0`).\n\n**Real-World Applications:**\n\n1. **Counting Items:**  Tracking the number of items in a shopping cart, the number of students in a class, or the number of elements in an array.\n\n2. **Loop Counters:**  Controlling the number of iterations in a `for` loop.\n\n3. **Indices:**  Representing the index or position of an element within an array or other data structure.\n\n\nExample demonstrating loop counters and indices:\n\n```c++\n#include <iostream>\n#include <vector>\n\nint main() {\n  std::vector<int> numbers = {10, 20, 30, 40, 50};\n  int sum = 0;\n\n  for (int i = 0; i < numbers.size(); ++i) {  // i is an int index\n    sum += numbers[i];\n  }\n  std::cout << \"Sum of numbers: \" << sum << std::endl;\n  return 0;\n}\n```",
+      "explanation": "A good answer should include these key points: * Definition of `int` as a whole number data type.\n* Declaration and initialization syntax.\n* Usage in arithmetic and comparison operations.\n* Explanation of integer division truncation.\n* Discussion of size and range (mentioning platform dependency).\n* Detailed explanation of integer overflow and its consequences.\n* At least three relevant and distinct real-world examples of `int` usage.  Examples should be clearly explained and ideally shown within short code snippets.\n* Correct code examples with proper syntax and commenting."
+    },
+    {
+      "id": "80ab93ae-5f4c-47b4-82d1-f9abd9a79257",
+      "type": "mcq",
+      "text": "Which of the following best describes the `int` data type in C++?",
+      "options": [
+        "A data type used to store floating-point numbers with a decimal component.",
+        "A data type used to store whole numbers, both positive and negative, without a fractional part.",
+        "A data type used to store characters, such as letters and symbols.",
+        "A data type used to store boolean values (true or false)."
+      ],
+      "answer": "A data type used to store whole numbers, both positive and negative, without a fractional part.",
+      "explanation": "The `int` data type in C++ is specifically designed to hold integer values \u2013 whole numbers without any decimal component.  Options A, C, and D describe `float`/`double`, `char`, and `bool` data types, respectively."
+    }
+  ]
+}

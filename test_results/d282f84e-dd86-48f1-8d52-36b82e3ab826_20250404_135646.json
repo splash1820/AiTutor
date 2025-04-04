@@ -1,0 +1,48 @@
+{
+  "test_id": "ac16d21f-73b4-423a-bfdf-43a3cbec0085",
+  "total_score": 140,
+  "max_score": 500,
+  "percentage": 28.000000000000004,
+  "questions_results": [
+    {
+      "question_id": "9f25b823-3673-43bc-9db8-f5b7cbcbd986",
+      "question_number": 1,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: Option A",
+      "correct_answer": "Option A",
+      "score": 0
+    },
+    {
+      "question_id": "251b4841-e704-4051-b8ef-0ee035832b22",
+      "question_number": 2,
+      "evaluation": "partially_correct",
+      "feedback": "The student's answer needs further development to be considered complete.  To determine the accuracy and completeness, please provide the student's answer.  However,  a good answer should cover topics like:\n\n* **Basic Syntax and Structure:**  Explanation of the basic structure of a C++ program (including `#include`, `using namespace std;`, `main` function, etc.).  Illustrative examples are crucial here.\n* **Data Types:** Discussion of primitive data types (int, float, double, char, bool) and their uses.\n* **Variables and Constants:** Explanation of variable declaration, initialization, and scope.  The difference between variables and constants should also be clarified.\n* **Operators:**  A brief overview of arithmetic, relational, logical, and assignment operators with examples.\n* **Input/Output:** How to take input from the user (using `cin`) and display output (using `cout`). Examples are crucial.\n* **Control Flow:**  Explaining `if`, `else`, `for`, `while` loops with illustrative examples. \n* **Functions:**  An introduction to creating and using functions (including parameters and return types). \n* **Basic Concepts of Object Oriented Programming (OOP):** While an intro course might not cover it deeply, a brief mention of classes and objects might be appropriate.\n\nWithout the student's answer, I can only provide a general framework for a good response. The current evaluation is based on the expectation that a comprehensive answer should address most of these points with clarity and accuracy.  The score reflects this lack of content, assuming a reasonably complete answer would score higher.",
+      "correct_answer": "A detailed answer discussing key points and examples.",
+      "score": 40
+    },
+    {
+      "question_id": "1fe63980-8e42-4219-b0c6-7ee8590984e3",
+      "question_number": 3,
+      "evaluation": "wrong",
+      "feedback": "The student's code is missing.  The expected solution is a function definition `def solution(): pass` which does nothing.  Without seeing the student's attempt, it's impossible to provide specific feedback on correctness, code quality, efficiency, or edge case handling.  The provided test cases are also not helpful without the student's code. To receive a proper evaluation, please provide the student's code.",
+      "correct_answer": "def solution():\n    pass",
+      "score": 0
+    },
+    {
+      "question_id": "b9fd497a-588f-425a-a40d-e24e94879677",
+      "question_number": 4,
+      "evaluation": "correct",
+      "feedback": "Your answer is correct!",
+      "correct_answer": "Option A",
+      "score": 100
+    },
+    {
+      "question_id": "092badee-909e-4a87-9fb2-223d113815c2",
+      "question_number": 5,
+      "evaluation": "partially_correct",
+      "feedback": "Please provide the student's answer so I can evaluate it.  I need the text of the student's answer to assess its accuracy, completeness, understanding, and clarity.  Without the student's response, I cannot provide specific feedback or a score.  A good answer would cover topics such as: variables (int, float, char, etc.), data types, operators (arithmetic, logical, bitwise), control flow (if-else statements, loops), functions, input/output operations (using cout and cin), basic object-oriented programming concepts (classes and objects, though a very introductory course may not cover these in depth), and possibly pointers (depending on the course level).  The answer should demonstrate understanding through clear explanations and potentially simple code examples to illustrate concepts. The level of detail should be appropriate for an introductory course.",
+      "correct_answer": "A detailed answer discussing key points and examples.",
+      "score": 0
+    }
+  ]
+}

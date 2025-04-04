@@ -1,0 +1,112 @@
+{
+  "title": "Test on Introduction to what is int data type in c++",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "17087c5a-7a2c-4afd-9d10-a78436284b40",
+      "type": "mcq",
+      "text": "Question about Introduction to what is int data type in c++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "26ba591b-a2ac-4ccd-9601-2c6cb8501a52",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to what is int data type in c++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "e92e302a-7525-462d-9195-78daaedf318a",
+      "type": "code",
+      "text": "Write a function related to Introduction to what is int data type in c++",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "8c6e67ee-8125-4eaa-8b5b-8a9409ce72e5",
+      "type": "mcq",
+      "text": "Question about Introduction to what is int data type in c++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "f0edfb39-d71f-4f39-95b8-1019023e47fa",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to what is int data type in c++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "4558aca5-f7e2-4c88-9dba-d6f0ec168da1",
+      "type": "code",
+      "text": "Write a function related to Introduction to what is int data type in c++",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "c6f7fc1c-2705-4c1e-8ef1-6963675a877d",
+      "type": "mcq",
+      "text": "Question about Introduction to what is int data type in c++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "710bbde4-d75f-4445-943d-def287f840e4",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to what is int data type in c++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "0f8b4941-4ea5-428d-b30f-1bf499340235",
+      "type": "code",
+      "text": "Write a function related to Introduction to what is int data type in c++",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "a4627cf9-0c87-4701-9b3b-4b0f5a711411",
+      "type": "mcq",
+      "text": "Question about Introduction to what is int data type in c++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    }
+  ]
+}

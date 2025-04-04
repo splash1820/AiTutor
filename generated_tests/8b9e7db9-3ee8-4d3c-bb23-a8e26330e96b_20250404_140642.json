@@ -1,0 +1,61 @@
+{
+  "title": "Test on basic java",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "01fb59da-17fe-4ecd-9994-4981a48020c8",
+      "type": "mcq",
+      "text": "Which statement regarding Java's `static` keyword is FALSE?",
+      "options": [
+        "A static method can access only static members (variables and methods) of its class.",
+        "A static variable is shared among all instances of a class.",
+        "A static block is executed only once, when the class is first loaded.",
+        "Static methods can be overridden in subclasses."
+      ],
+      "answer": "Static methods can be overridden in subclasses.",
+      "explanation": "Static methods cannot be overridden.  Overriding applies to instance methods (non-static methods).  Since static methods belong to the class itself, not to any specific instance, there's no concept of overriding them in subclasses.  A subclass can declare a static method with the same name, effectively hiding the superclass's static method, but this is not overriding."
+    },
+    {
+      "id": "2e9e0622-f99a-49d4-871a-7fb5a0ca1c29",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions, such as null or empty input arrays.  If the input array contains no even numbers, return an empty array.",
+      "answer": "def getEvenNumbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n      arr: The input integer array.\n\n    Returns:\n      A new array containing only the even numbers from the input array.\n      Returns an empty array if the input is null, empty, or contains no even numbers.\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n\n    even_numbers = []\n    for num in arr:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+      "test_cases": [
+        "Input: `[1, 2, 3, 4, 5, 6]`\nExpected Output: `[2, 4, 6]`",
+        "Input: `[1, 3, 5, 7]`\nExpected Output: `[]`"
+      ],
+      "explanation": "The Python function `getEvenNumbers` first checks if the input array is null or empty. If so, it returns an empty array. Otherwise, it iterates through the array, checking each number for evenness using the modulo operator (`%`). If a number is even (remainder is 0 when divided by 2), it's added to the `even_numbers` list. Finally, the function returns the `even_numbers` list.  This solution directly addresses the problem's requirements and handles edge cases effectively.  A Java implementation would follow a very similar logic, using an ArrayList instead of a Python list."
+    },
+    {
+      "id": "806710df-3249-436d-9873-7bf9f1db3d0c",
+      "type": "descriptive",
+      "text": "Explain the differences between `==` and `.equals()` when comparing objects in Java, providing examples to illustrate the distinction and outlining scenarios where each is appropriate.  Consider both primitive data types and objects.",
+      "answer": "In Java, both `==` and `.equals()` are used for comparison, but they operate differently and are suitable for different scenarios.\n\n`==` (the equality operator) compares the memory addresses of two variables.  For primitive data types (like `int`, `float`, `boolean`), it directly compares their values. However, for objects, it checks if both variables refer to the *same* object in memory.  If they point to the same object, it returns `true`; otherwise, it returns `false`, even if the objects have the same content.\n\n`.equals()` (a method defined in the `Object` class, and often overridden in other classes), compares the *content* of two objects.  The default implementation in `Object` behaves the same as `==`, comparing memory addresses.  However, many classes override this method to provide a meaningful comparison of their internal state.  For example, the `String` class overrides `.equals()` to compare the sequence of characters in the strings.  For primitive types, `.equals()` cannot be directly used; you must wrap them in their corresponding wrapper classes (e.g., `Integer`, `Float`) before comparison.\n\n\n**Examples:**\n\n```java\nint x = 5;\nint y = 5;\nSystem.out.println(x == y); // true (primitive comparison)\n\nInteger a = new Integer(5);\nInteger b = new Integer(5);\nSystem.out.println(a == b); // false (object comparison using ==, different memory addresses)\nSystem.out.println(a.equals(b)); // true (content comparison using .equals())\n\n\nString str1 = \"hello\";\nString str2 = \"hello\";\nSystem.out.println(str1 == str2); // true (Java String pool optimization might cause this)\nString str3 = new String(\"hello\");\nString str4 = new String(\"hello\");\nSystem.out.println(str3 == str4); // false (different objects in memory)\nSystem.out.println(str3.equals(str4)); // true (content comparison)\n\n\nPerson p1 = new Person(\"Alice\", 30);\nPerson p2 = new Person(\"Alice\", 30);\nSystem.out.println(p1 == p2); // false (different objects)\nSystem.out.println(p1.equals(p2)); // false (unless equals() is overridden in the Person class)\n\n```\n\n**When to use which:**\n\nUse `==` to compare primitive types or to check if two object references point to the same object in memory. Use `.equals()` to compare the content of objects, but only after ensuring that the `equals()` method has been properly overridden in the relevant class to reflect a meaningful content comparison.  Failing to override `equals()` correctly can lead to unexpected behavior.",
+      "explanation": "A good answer should include these key points: *   `==` compares memory addresses (or values for primitives).\n*   `.equals()` compares content (unless overridden).\n*   `equals()` needs to be overridden for custom classes to provide meaningful content comparison.\n*   Illustrative examples for both primitives and objects are necessary.\n*   Explanation of String pool optimization (optional but beneficial).\n*   Clear explanation of when to use each operator.\n*   Mention the importance of overriding `equals()` correctly for custom classes."
+    },
+    {
+      "id": "77db3130-0053-4329-8327-778960d95965",
+      "type": "mcq",
+      "text": "Which statement regarding Java's `static` keyword is FALSE?",
+      "options": [
+        "A static method can access only static members of its class.",
+        "A static variable belongs to the class itself, not to any specific instance of the class.",
+        "A static block is executed only once, when the class is first loaded.",
+        "A class can have multiple static constructors to handle different initialization scenarios."
+      ],
+      "answer": "A class can have multiple static constructors to handle different initialization scenarios.",
+      "explanation": "A class can only have one static initializer block (a static block),  and it cannot have multiple static constructors.  Constructors, whether static or not, are used to initialize objects.  A class can only have one constructor with a particular signature.  Options A, B, and C are all true statements about the `static` keyword in Java."
+    },
+    {
+      "id": "442f0594-727a-423e-b49c-1330429d4fbe",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions (e.g., null input) gracefully and return an empty array in such cases.  The order of even numbers in the output array should be the same as in the input array.",
+      "answer": "def getEvenNumbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n        arr: The input integer array.\n\n    Returns:\n        A new array containing only the even numbers from the input array.\n        Returns an empty array if the input is null or empty, or contains no even numbers.\n\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return []\n\n    even_numbers = []\n    for num in arr:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+      "test_cases": [
+        "Input: `[1, 2, 3, 4, 5, 6]`\nExpected Output: `[2, 4, 6]`",
+        "Input: `[1, 3, 5, 7]`\nExpected Output: `[]`"
+      ],
+      "explanation": "The function first checks if the input array is null or empty. If so, it returns an empty array. Otherwise, it iterates through the array, checking each number for evenness using the modulo operator (`%`). If a number is even (remainder is 0 when divided by 2), it's added to the `even_numbers` list. Finally, the function returns the `even_numbers` list as a new array.  This solution directly addresses the problem statement and uses straightforward logic to achieve the desired outcome.  Error handling for null or empty input is explicitly included."
+    }
+  ]
+}

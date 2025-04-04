@@ -1,0 +1,37 @@
+{
+  "title": "Test on DOM in javascript",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "802aaac3-dc58-4ffd-89c8-bb3ea2a111fb",
+      "type": "mcq",
+      "text": "Question 1 about DOM in javascript",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct option because it accurately describes the concept."
+    },
+    {
+      "id": "4cb1a0e3-11aa-4d98-bd39-a4446ddd5ba1",
+      "type": "descriptive",
+      "text": "Explain the concept of DOM in javascript",
+      "answer": "A model answer would discuss key points, principles, and examples.",
+      "explanation": "A good answer should cover the definition, examples, and applications."
+    },
+    {
+      "id": "9f62af65-4440-4ecc-98c7-86cad9cb45b5",
+      "type": "code",
+      "text": "Write a function to solve the following problem related to DOM in javascript",
+      "answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "test_cases": [
+        "test case 1",
+        "test case 2"
+      ],
+      "explanation": "The solution should implement the algorithm efficiently."
+    }
+  ]
+}

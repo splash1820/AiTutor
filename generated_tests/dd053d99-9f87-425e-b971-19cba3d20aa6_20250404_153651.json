@@ -1,0 +1,61 @@
+{
+  "title": "Test on intro to python",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "2a763e3d-cc3f-4cbd-8feb-9b91575ed3f0",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nmy_list = [1, 2, 3, 4, 5]\nmy_list.pop(2)\nprint(my_list)\n```",
+      "options": [
+        "[1, 2, 4, 5]",
+        "[1, 2, 3, 4, 5]",
+        "[1, 3, 4, 5]",
+        "Error: list index out of range"
+      ],
+      "answer": "[1, 3, 4, 5]",
+      "explanation": "The `pop()` method removes and returns the element at the specified index.  In this case, `pop(2)` removes the element at index 2 (which is 3), resulting in the list [1, 3, 4, 5]."
+    },
+    {
+      "id": "72fc685f-5295-4a8d-aea3-73100e1fe954",
+      "type": "code",
+      "text": "Write a Python function that takes a list of integers as input and returns a new list containing only the even numbers from the input list, in their original order.  If the input list is empty, return an empty list.  The function should handle potential errors gracefully (e.g., non-integer inputs).",
+      "answer": "def get_even_numbers(input_list):\n    \"\"\"\n    Returns a new list containing only the even numbers from the input list, \n    preserving their original order. Handles non-integer inputs gracefully.\n    \"\"\"\n    even_numbers = []\n    for item in input_list:\n        try:\n            if isinstance(item, int) and item % 2 == 0:\n                even_numbers.append(item)\n        except TypeError:\n            print(f\"Warning: Non-integer value '{item}' encountered. Skipping.\")\n    return even_numbers",
+      "test_cases": [
+        "Input: `[1, 2, 3, 4, 5, 6]`\nExpected Output: `[2, 4, 6]`",
+        "Input: `[1, 'a', 2, 3, 4, 'b', 6]`\nExpected Output: `[2, 4, 6]` (with a warning message printed for 'a' and 'b')"
+      ],
+      "explanation": "The function iterates through the input list.  It uses a `try-except` block to handle potential `TypeError` exceptions if a non-integer value is encountered. Inside the `try` block, it checks if the item is an integer and even. If both conditions are true, the item is appended to the `even_numbers` list.  Finally, the function returns the `even_numbers` list."
+    },
+    {
+      "id": "c81e916d-d76e-46aa-a788-6302c8f668a9",
+      "type": "descriptive",
+      "text": "Describe the differences between mutable and immutable data types in Python, providing examples of each and explaining the implications of these differences for data manipulation and program behavior.  Illustrate your answer with code snippets demonstrating how mutability affects list and tuple operations.",
+      "answer": "In Python, data types are classified as either mutable or immutable based on whether their values can be changed after creation.  Mutable objects can be modified in place, while immutable objects cannot; any operation that appears to modify an immutable object actually creates a new object.\n\n**Immutable Data Types:** These include integers, floats, booleans, strings, and tuples.  Once created, their value cannot be altered.  Any operation that seems to change the value actually creates a new object.\n\n```python\nmy_string = \"hello\"\nnew_string = my_string + \" world\"  # Creates a new string; my_string remains unchanged\nprint(my_string)  # Output: hello\nprint(new_string) # Output: hello world\n\nmy_tuple = (1, 2, 3)\n#my_tuple[0] = 4  # This would raise a TypeError: 'tuple' object does not support item assignment\n\nnew_tuple = my_tuple + (4,) # creates a new tuple\nprint(my_tuple) # Output: (1,2,3)\nprint(new_tuple) # Output: (1, 2, 3, 4)\n```\n\n**Mutable Data Types:** These include lists, dictionaries, and sets.  Their values can be modified directly after creation.\n\n```python\nmy_list = [1, 2, 3]\nmy_list[0] = 4  # Modifies the list in place\nprint(my_list)  # Output: [4, 2, 3]\n\nmy_dictionary = {\"a\": 1, \"b\": 2}\nmy_dictionary[\"c\"] = 3  # Adds a new key-value pair\nprint(my_dictionary)  # Output: {'a': 1, 'b': 2, 'c': 3}\n```\n\n**Implications:**\n\nThe mutability of a data type significantly impacts how you work with it:\n\n* **Memory Efficiency:** Immutable objects can often be shared more efficiently in memory because changes don't affect other references to the same object.  Mutable objects require more memory management to handle modifications.\n* **Data Integrity:** Immutable objects inherently provide data integrity; once created, their value cannot be accidentally changed.  Mutable objects require careful consideration to avoid unintended side effects, especially when passed as arguments to functions.\n* **Functional Programming:** Immutable data structures are fundamental to functional programming paradigms, as they ensure that functions don't have unintended side effects.",
+      "explanation": "A good answer should include these key points: * **Definition of mutability:**  Clearly define mutable and immutable data types and explain the core difference.\n* **Examples:** Provide concrete examples of both mutable (lists, dictionaries) and immutable (strings, tuples, integers) data types.\n* **Code snippets:** Include code snippets demonstrating modifications (or attempts at modifications) for both types of data structures.\n* **Implications:** Discuss the implications of mutability, including memory management, data integrity, and functional programming considerations.  Explain how these differences impact code behavior.  \n* **Error handling (optional but recommended):** Show what happens when you try to modify an immutable object (e.g., a TypeError)."
+    },
+    {
+      "id": "a9f5a929-3106-4353-89b8-8ad6f4a004e3",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nmy_list = [1, 2, 3, 4, 5]\nmy_list[1:4] = [10, 11]\nprint(my_list)\n```",
+      "options": [
+        "`[1, 10, 11, 4, 5]`",
+        "`[1, 10, 11, 3, 4, 5]`",
+        "`[1, 2, 3, 10, 11, 4, 5]`",
+        "`[1, 10, 11]`"
+      ],
+      "answer": "`[1, 10, 11, 4, 5]`",
+      "explanation": "List slicing with assignment replaces a portion of the list. `my_list[1:4]` selects elements from index 1 (inclusive) up to index 4 (exclusive), which is [2, 3, 4].  Assigning `[10, 11]` to this slice replaces those three elements with the two elements of the new list. The resulting list is [1, 10, 11, 4, 5]."
+    },
+    {
+      "id": "3902db6a-7a82-448a-a550-1bd32deacbf4",
+      "type": "code",
+      "text": "Write a Python function that takes a list of integers as input and returns a new list containing only the even numbers from the input list, in the same order they appeared in the input list.  The function should handle empty lists gracefully and return an empty list in that case.  If the input list contains non-integer values, your function should raise a TypeError with the message \"Input list must contain only integers\".",
+      "answer": "def get_even_numbers(numbers):\n    \"\"\"\n    Returns a new list containing only the even numbers from the input list.\n\n    Args:\n      numbers: A list of integers.\n\n    Returns:\n      A new list containing only the even numbers from the input list.  Returns an empty list if the input list is empty or contains no even numbers.\n      Raises a TypeError if the input list contains non-integer values.\n    \"\"\"\n    if not all(isinstance(num, int) for num in numbers):\n        raise TypeError(\"Input list must contain only integers\")\n    return [num for num in numbers if num % 2 == 0]",
+      "test_cases": [
+        "Input: `[1, 2, 3, 4, 5, 6]`\nOutput: `[2, 4, 6]`",
+        "Input: `[1, 3, 5, 7]`\nOutput: `[]`"
+      ],
+      "explanation": "The function first checks if all elements in the input list are integers using `all(isinstance(num, int) for num in numbers)`. If not, it raises a TypeError. Otherwise, it uses a list comprehension `[num for num in numbers if num % 2 == 0]` to efficiently create a new list containing only the even numbers (numbers divisible by 2 with a remainder of 0).  This list comprehension iterates through the input list, and for each number, it checks if the remainder when divided by 2 is 0. If it is, the number is added to the new list."
+    }
+  ]
+}

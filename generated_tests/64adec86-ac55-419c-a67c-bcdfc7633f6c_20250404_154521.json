@@ -1,0 +1,61 @@
+{
+  "title": "Test on intro to python",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "7d22a898-e143-41f0-92d8-52408bb1d28e",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nmy_list = [1, 2, 3, 4, 5]\nmy_list.pop(2)\nprint(my_list)\n```",
+      "options": [
+        "[1, 2, 4, 5]",
+        "[1, 2, 3, 4, 5]",
+        "[1, 2, 3, 5]",
+        "Error: 'list' object has no attribute 'pop'"
+      ],
+      "answer": "[1, 2, 4, 5]",
+      "explanation": "The `pop()` method removes and returns the element at the specified index.  In this case, `my_list.pop(2)` removes the element at index 2 (which is the number 3), resulting in the list `[1, 2, 4, 5]`."
+    },
+    {
+      "id": "3ebbeddb-3134-4ed1-8158-1a563cbd4ae8",
+      "type": "code",
+      "text": "Write a Python function that takes a list of strings as input and returns a new list containing only the strings that are palindromes (read the same forwards and backward).  The function should ignore case and punctuation.",
+      "answer": "import string\n\ndef find_palindromes(strings):\n    \"\"\"\n    Finds and returns palindromes from a list of strings, ignoring case and punctuation.\n\n    Args:\n      strings: A list of strings.\n\n    Returns:\n      A new list containing only the palindromes from the input list.  Returns an empty list if no palindromes are found.\n    \"\"\"\n    palindromes = []\n    for s in strings:\n        processed_string = ''.join(c for c in s.lower() if c.isalnum())\n        if processed_string == processed_string[::-1] and len(processed_string) > 0:\n            palindromes.append(s)\n    return palindromes",
+      "test_cases": [
+        "Input:  `[\"racecar\", \"hello\", \"madam\", \"level\", \"world\", \"deified\"]`\nOutput: `['racecar', 'madam', 'level', 'deified']`",
+        "Input:  `[\"A man, a plan, a canal: Panama\", \"rotor\", \"stats\", \"hello world\"]`\nOutput: `['A man, a plan, a canal: Panama', 'rotor', 'stats']`"
+      ],
+      "explanation": "The function first iterates through each string in the input list. For each string, it removes punctuation and converts it to lowercase using string manipulation and list comprehension. Then it checks if the processed string is equal to its reverse using string slicing (`[::-1]`). If it is a palindrome and not an empty string after processing, it's added to the `palindromes` list. Finally, the function returns the list of palindromes."
+    },
+    {
+      "id": "db42b831-70ec-47e1-8eab-ce80e610c7c1",
+      "type": "descriptive",
+      "text": "Explain the difference between mutable and immutable data types in Python, providing at least three examples of each, and illustrating how this distinction affects program behavior with specific code examples showcasing potential issues arising from misunderstanding mutability.",
+      "answer": "In Python, data types are categorized as either mutable or immutable based on whether their values can be changed after creation.  \n\n**Immutable Data Types:**  These objects cannot be modified after they are created.  Any operation that appears to modify an immutable object actually creates a new object.  Examples include:\n\n1. **Integers (int):**  If you have `x = 5` and then `x = x + 2`, you're not changing the value of the original integer object; you're creating a new integer object with the value 7 and assigning it to `x`.\n2. **Strings (str):** Similarly, strings are immutable.  `my_string = \"hello\"; my_string += \" world\"` creates a new string object \"hello world\".\n3. **Tuples (tuple):** Tuples are ordered, immutable sequences of items.  `my_tuple = (1, 2, 3); my_tuple[0] = 4` will result in a `TypeError` because you cannot change elements within a tuple.\n\n**Mutable Data Types:** These objects can be modified in place after creation. Examples include:\n\n1. **Lists (list):** Lists are ordered, mutable sequences.  `my_list = [1, 2, 3]; my_list[0] = 4` successfully changes the first element of the list.\n2. **Dictionaries (dict):** Dictionaries are unordered collections of key-value pairs.  `my_dict = {\"a\": 1, \"b\": 2}; my_dict[\"c\"] = 3` adds a new key-value pair to the dictionary.\n3. **Sets (set):** Sets are unordered collections of unique elements.  `my_set = {1, 2, 3}; my_set.add(4)` adds 4 to the set.\n\n\n**Illustrative Code Examples and Potential Issues:**\n\nLet's consider a function that modifies a list:\n\n```python\ndef modify_list(my_list):\n    my_list.append(4)\n\nmy_list = [1, 2, 3]\nmodify_list(my_list)\nprint(my_list)  # Output: [1, 2, 3, 4]  The original list is modified.\n```\n\nNow let's try to do something similar with a tuple:\n\n```python\ndef modify_tuple(my_tuple):\n    my_tuple += (4,) #This creates a new tuple, it doesn't modify the original.\n\nmy_tuple = (1, 2, 3)\nmodify_tuple(my_tuple)\nprint(my_tuple)  # Output: (1, 2, 3) The original tuple remains unchanged.\n```\n\nThis illustrates a common pitfall: functions operating on mutable objects can have unintended side effects if the caller doesn't anticipate the modifications. Immutable objects avoid this, making code easier to reason about, but may lead to increased memory usage due to frequent object creation.",
+      "explanation": "A good answer should include these key points: * **Definition of mutable and immutable:**  Clear and concise definition of both terms.\n* **Examples:**  At least three examples of each type with brief explanations.\n* **Code Examples:**  Demonstrating the difference in behavior when modifying mutable and immutable objects.  Illustrating the potential issues (side effects with mutable types).\n* **Explanation of side effects:**  Explicitly mentioning how modifications to mutable objects within functions can impact the original object passed as an argument.\n* **Memory considerations:** (Optional but beneficial)  Briefly discuss the potential memory implications related to the creation of new objects when dealing with immutable types."
+    },
+    {
+      "id": "68bc09a9-2937-41f1-b1ac-392ef7004261",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nx = 5\ny = 10\nz = x + y\nif z > 10:\n    print(\"Greater than 10\")\nelif z == 10:\n    print(\"Equal to 10\")\nelse:\n    print(\"Less than 10\")\n```",
+      "options": [
+        "Less than 10",
+        "Equal to 10",
+        "Greater than 10",
+        "An error will occur"
+      ],
+      "answer": "Greater than 10",
+      "explanation": "The code first calculates `z` as 15 (5 + 10).  The `if` condition `z > 10` evaluates to `True`, so the code prints \"Greater than 10\"."
+    },
+    {
+      "id": "bacd30f0-4280-41c5-8aad-e70b3aab2ae3",
+      "type": "code",
+      "text": "Write a Python function called `count_vowels_consonants` that takes a string as input and returns a dictionary containing the counts of vowels (a, e, i, o, u) and consonants in the string.  The function should ignore case and non-alphabetic characters.",
+      "answer": "def count_vowels_consonants(input_string):\n    \"\"\"Counts vowels and consonants in a string, ignoring case and non-alphabetic characters.\n\n    Args:\n        input_string: The input string.\n\n    Returns:\n        A dictionary with 'vowels' and 'consonants' keys, containing their respective counts.  Returns an empty dictionary if the input is None or empty.\n\n    \"\"\"\n    if not input_string:\n        return {}\n\n    vowels = \"aeiouAEIOU\"\n    vowel_count = 0\n    consonant_count = 0\n\n    for char in input_string:\n        if char.isalpha():\n            if char in vowels:\n                vowel_count += 1\n            else:\n                consonant_count += 1\n\n    return {'vowels': vowel_count, 'consonants': consonant_count}",
+      "test_cases": [
+        "Input: \"Hello, World!\"\nExpected Output: {'vowels': 3, 'consonants': 7}",
+        "Input: \"This is a Test string.\"\nExpected Output: {'vowels': 4, 'consonants': 11}"
+      ],
+      "explanation": "The function first handles the edge case of an empty or None input string. It then initializes counters for vowels and consonants. It iterates through the input string, checking if each character is an alphabet character using `isalpha()`. If it's an alphabet character, it checks if it's a vowel; if so, the vowel counter is incremented, otherwise the consonant counter is incremented. Finally, it returns a dictionary containing the counts."
+    }
+  ]
+}

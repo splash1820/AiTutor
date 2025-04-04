@@ -1,0 +1,57 @@
+{
+  "title": "Test on Basics of C++",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "b0f3757d-e1da-4112-b332-d295267cc566",
+      "type": "mcq",
+      "text": "Question 1 about Basics of C++",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "answer": "Option 1",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "66fe9018-c112-4fda-90cf-395fadbc17d3",
+      "type": "descriptive",
+      "text": "Explain the concept of Basics of C++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "99fc9b6b-07a2-4bcc-82bc-f98d73d0e4fa",
+      "type": "code",
+      "text": "Write a function related to Basics of C++",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "68bbaa01-502d-43b6-85fb-4ad12bf5b484",
+      "type": "mcq",
+      "text": "Question 4 about Basics of C++",
+      "options": [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ],
+      "answer": "Option 1",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "753508d9-c391-481f-87dc-38336096d834",
+      "type": "descriptive",
+      "text": "Explain the concept of Basics of C++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    }
+  ]
+}

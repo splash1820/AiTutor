@@ -1,0 +1,61 @@
+{
+  "title": "Test on intro to c++",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "1d15df1a-7a8e-43d5-b4ce-ddf2e9303681",
+      "type": "mcq",
+      "text": "Which of the following statements regarding memory management in C++ is MOST accurate?",
+      "options": [
+        "C++ automatically manages all memory allocation and deallocation, preventing memory leaks.",
+        "C++ relies solely on manual memory management using `malloc` and `free`.",
+        "C++ offers both automatic memory management (for local variables) and manual memory management (using `new` and `delete`) options.",
+        "C++'s memory management is entirely dependent on the operating system, with no programmer intervention required."
+      ],
+      "answer": "C++ offers both automatic memory management (for local variables) and manual memory management (using `new` and `delete`) options.",
+      "explanation": "C++ employs a hybrid approach to memory management.  Local variables are automatically allocated on the stack and deallocated when they go out of scope.  However, dynamically allocated memory (using `new` and `delete`) requires explicit manual management by the programmer to prevent memory leaks.  Options A, B, and D are incorrect simplifications of C++'s memory management system."
+    },
+    {
+      "id": "1bc55758-20df-441a-9bfc-e49cb89eed32",
+      "type": "code",
+      "text": "Write a C++ function that takes an integer array and its size as input. The function should return the sum of all even numbers in the array.  If the array is empty or contains no even numbers, the function should return 0.  Handle potential errors gracefully (e.g., null pointer for the array).",
+      "answer": "def sum_even_numbers(arr, size):\n    \"\"\"\n    Calculates the sum of even numbers in an integer array.\n\n    Args:\n        arr: The integer array (represented as a list in Python).\n        size: The size of the array.\n\n    Returns:\n        The sum of even numbers in the array. Returns 0 if the array is empty or contains no even numbers.\n        Raises TypeError if input is not a list or size is not an integer.\n        Raises ValueError if size is negative or inconsistent with array length.\n\n    \"\"\"\n    if not isinstance(arr, list):\n        raise TypeError(\"Input must be a list.\")\n    if not isinstance(size, int):\n        raise TypeError(\"Size must be an integer.\")\n    if size < 0:\n        raise ValueError(\"Size cannot be negative.\")\n    if size != len(arr):\n        raise ValueError(\"Size is inconsistent with array length.\")\n\n    if size == 0:\n        return 0\n\n    sum_of_evens = 0\n    for num in arr:\n        if num % 2 == 0:\n            sum_of_evens += num\n    return sum_of_evens",
+      "test_cases": [
+        "Input: `arr = [1, 2, 3, 4, 5, 6]`, `size = 6`\nExpected Output: 12",
+        "Input: `arr = [1, 3, 5, 7]`, `size = 4`\nExpected Output: 0"
+      ],
+      "explanation": "The Python function `sum_even_numbers` first performs error handling to check for invalid inputs (incorrect data types, negative or inconsistent size).  Then, it iterates through the input array. For each number, it checks if it's even using the modulo operator (`%`). If it's even, the number is added to the `sum_of_evens` variable. Finally, the function returns the accumulated sum. If the array is empty or contains no even numbers, the function returns 0."
+    },
+    {
+      "id": "cfcc29f9-8fd6-4bae-b91f-c9115f8d5f95",
+      "type": "descriptive",
+      "text": "Explain the concept of memory management in C++, focusing on the differences between stack and heap memory allocation, and illustrate with examples demonstrating when you might choose one over the other.  Discuss the implications of improper memory management and techniques to mitigate potential issues such as memory leaks and dangling pointers.",
+      "answer": "C++ offers both stack and heap memory allocation, each with distinct characteristics impacting program design and performance.  The stack is a LIFO (Last-In, First-Out) data structure that automatically manages memory. Variables declared within functions are typically allocated on the stack.  Its advantage is speed and simplicity; allocation and deallocation are handled implicitly when the function scope ends. However, stack memory is limited in size.  Attempting to allocate excessively large structures on the stack leads to stack overflow.\n\nThe heap, on the other hand, is a dynamically allocated memory pool.  Memory on the heap is explicitly requested using `new` and released using `delete` (for single objects) or `new[]` and `delete[]` (for arrays).  This provides greater flexibility; you can allocate memory as needed during program execution and deallocate it when it's no longer required.  However, manual memory management on the heap introduces the risk of errors.\n\nChoosing between stack and heap depends on the context:\n\n* **Stack:** Prefer the stack for local variables with known, relatively small sizes.  Their automatic management simplifies the code and prevents memory leaks.  Example: `int x = 10;` (x is allocated on the stack within the function's scope).\n\n* **Heap:** Use the heap when the size of the data is unknown at compile time or if the data needs to persist beyond the scope of a function.  Example: `int* y = new int[n];` (allocates an array of integers on the heap; `n` is determined at runtime).  Remember to always `delete[] y;` when you are finished with it to avoid memory leaks.\n\n\nImproper memory management is a significant source of bugs in C++.  Memory leaks occur when dynamically allocated memory is no longer needed but not released, gradually consuming system resources. Dangling pointers arise when a pointer refers to memory that has already been deallocated, leading to unpredictable behavior.  Smart pointers (like `std::unique_ptr`, `std::shared_ptr`, and `std::weak_ptr`) are powerful tools to mitigate these issues by automating memory management and preventing dangling pointers.  RAII (Resource Acquisition Is Initialization) is a crucial principle; resources are acquired within constructors and released in destructors, guaranteeing resource cleanup even in exceptional situations.",
+      "explanation": "A good answer should include these key points: * **Stack vs. Heap:**  Explain the differences in allocation, size limitations, and automatic vs. manual management.\n* **Allocation and Deallocation:** Correctly demonstrate using `new`/`delete` and `new[]`/`delete[]`.\n* **Choosing between Stack and Heap:** Provide examples illustrating the appropriate use cases for each.\n* **Memory Leaks:** Define memory leaks and explain their consequences.\n* **Dangling Pointers:** Define dangling pointers and explain how they can cause problems.\n* **Mitigation Techniques:** Discuss the use of smart pointers and RAII as solutions for preventing memory leaks and dangling pointers.  Include examples of smart pointer usage."
+    },
+    {
+      "id": "4cd5cbb0-5d1a-49d2-a7e3-bccc2b242827",
+      "type": "mcq",
+      "text": "Which of the following statements regarding memory management in C++ is most accurate?",
+      "options": [
+        "C++ automatically handles all memory allocation and deallocation, preventing memory leaks.",
+        "C++ relies solely on manual memory management using `malloc` and `free`.",
+        "C++ provides both automatic memory management (for stack variables) and manual memory management (for heap variables using `new` and `delete`).",
+        "C++ uses garbage collection to automatically reclaim unused memory."
+      ],
+      "answer": "C++ provides both automatic memory management (for stack variables) and manual memory management (for heap variables using `new` and `delete`).",
+      "explanation": "C++ uses a hybrid approach to memory management.  Variables declared within a function's scope (on the stack) are automatically allocated and deallocated when the function begins and ends.  However, memory allocated dynamically on the heap using `new` requires explicit deallocation using `delete` to prevent memory leaks.  While smart pointers can automate some of this, the core responsibility remains with the programmer.  C++ does not use garbage collection in the same way as languages like Java or Python."
+    },
+    {
+      "id": "530d9f46-106f-450c-b58f-8ed8bc738527",
+      "type": "code",
+      "text": "Write a C++ function that takes an integer array and its size as input. The function should return a new array containing only the even numbers from the input array, preserving their original order.  If the input array contains no even numbers, return an empty array.  Your function should handle potential memory allocation errors gracefully.",
+      "answer": "#include <iostream>\n#include <vector>\n\nstd::vector<int> getEvenNumbers(const int arr[], int size) {\n    std::vector<int> evenNumbers;\n    for (int i = 0; i < size; ++i) {\n        if (arr[i] % 2 == 0) {\n            evenNumbers.push_back(arr[i]);\n        }\n    }\n    return evenNumbers;\n}\n\nint main() {\n    //Example usage (not part of the function itself, for demonstration)\n    int arr1[] = {1, 2, 3, 4, 5, 6};\n    int size1 = sizeof(arr1) / sizeof(arr1[0]);\n    std::vector<int> evens1 = getEvenNumbers(arr1, size1);\n    for (int x : evens1) std::cout << x << \" \"; //Output: 2 4 6\n    std::cout << std::endl;\n\n    int arr2[] = {1, 3, 5, 7};\n    int size2 = sizeof(arr2) / sizeof(arr2[0]);\n    std::vector<int> evens2 = getEvenNumbers(arr2, size2);\n    for (int x : evens2) std::cout << x << \" \"; //Output: (nothing)\n    std::cout << std::endl;\n    return 0;\n}",
+      "test_cases": [
+        "Input:  `arr` = {1, 2, 3, 4, 5, 6}, `size` = 6\nOutput: {2, 4, 6}",
+        "Input: `arr` = {1, 3, 5, 7, 9}, `size` = 5\nOutput: {} (an empty vector)"
+      ],
+      "explanation": "The C++ function `getEvenNumbers` iterates through the input integer array.  For each element, it checks if the number is even using the modulo operator (`%`). If it's even, the number is added to a `std::vector<int>` called `evenNumbers`.  Finally, the function returns this vector containing only the even numbers. The use of `std::vector` handles dynamic memory allocation automatically and avoids manual memory management which would increase complexity and the risk of errors.  The `main` function provides example usage to demonstrate the functionality."
+    }
+  ]
+}

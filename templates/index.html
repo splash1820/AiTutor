@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutoring System</title>
+    <style>:root {
+      --primary-color: #3a86ff;
+      --secondary-color: #8338ec;
+      --accent-color: #ff006e;
+      --light-color: #f8f9fa;
+      --dark-color: #1e1e2e;
+      --success-color: #06d6a0;
+      --warning-color: #ffbe0b;
+      --danger-color: #ef476f;
+      --info-color: #118ab2;
+      --border-color: #dee2e6;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+      --bg-color: #f5f7fa;
+      --card-bg: #ffffff;
+    }
+    
+    .dark-mode {
+      --primary-color: #4d9aff;
+      --secondary-color: #9d5cff;
+      --accent-color: #ff3385;
+      --light-color: #2a2a3c;
+      --dark-color: #121220;
+      --border-color: #3a3a4d;
+      --text-color: #e1e1e6;
+      --text-light: #a0a0a8;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --bg-color: #1a1a2e;
+      --card-bg: #2a2a3c;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Header and Navigation */
+    header {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 0.5rem 0;
+      box-shadow: var(--shadow);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo i {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+    
+    .logo h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .header-btn {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    
+    .header-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      font-weight: 500;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--primary-color);
+    }
+    
+    /* Main Container with Sidebar */
+    .main-container {
+      display: flex;
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    /* Agents Panel (Sidebar) */
+    .agents-panel {
+      width: 280px;
+      background-color: var(--card-bg);
+      border-right: 1px solid var(--border-color);
+      padding: 1.5rem 1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .agents-panel h3 {
+      color: var(--primary-color);
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .agents-list {
+      list-style: none;
+    }
+    
+    .agent-item {
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .agent-item:hover {
+      background-color: rgba(58, 134, 255, 0.1);
+    }
+    
+    .agent-item.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .agent-item i {
+      width: 20px;
+      text-align: center;
+    }
+    
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 2rem 1rem;
+    }
+    
+    section {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+    
+    .section-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .section-header h2 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-header p {
+      color: var(--text-light);
+    }
+    
+    .hidden-section {
+      display: none;
+    }
+    
+    .active-section {
+      display: block;
+    }
+    
+    /* Welcome Section */
+    .welcome-container {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .welcome-header {
+      margin-bottom: 2rem;
+    }
+    
+    .welcome-icon {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .welcome-text {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+    }
+    
+    .welcome-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .feature-card {
+      background-color: var(--light-color);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-card i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-card p {
+      color: var(--text-light);
+    }
+    
+    /* Search Container */
+    .search-container {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-top: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    
+    .search-bar {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .search-bar input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    /* Forms */
+    .input-form {
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-family: inherit;
+      font-size: 1rem;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .code-editor {
+      font-family: 'Consolas', 'Monaco', monospace;
+      min-height: 300px;
+      white-space: pre;
+    }
+    
+    /* Buttons */
+    .primary-btn, .secondary-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+    
+    .primary-btn {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .primary-btn:hover {
+      background-color: #2a75e8;
+    }
+    
+    .secondary-btn {
+      background-color: var(--light-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    
+    .secondary-btn:hover {
+      background-color: #e9ecef;
+    }
+    
+    .input-form button {
+      margin-top: 1rem;
+      width: 100%;
+    }
+    
+    /* Loading Animation */
+    .loading-container {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .loading-animation {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 1rem;
+    }
+    
+    .agent-icon {
+      animation: pulse 1.5s infinite alternate;
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+    
+    .agent-icon:nth-child(2) {
+      animation-delay: 0.3s;
+      color: var(--secondary-color);
+    }
+    
+    .agent-icon:nth-child(3) {
+      animation-delay: 0.6s;
+      color: var(--accent-color);
+    }
+    
+    .agent-icon:nth-child(4) {
+      animation-delay: 0.9s;
+      color: var(--success-color);
+    }
+    
+    @keyframes pulse {
+      0% {
+          transform: scale(0.8);
+          opacity: 0.6;
+      }
+      100% {
+          transform: scale(1.2);
+          opacity: 1;
+      }
+    }
+    
+    /* Results Container */
+    .result-container {
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Content Sections */
+    .content-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .content-section {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .content-section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+    }
+    
+    .content-section-header h4 {
+      font-size: 1.2rem;
+      color: var(--text-color);
+    }
+    
+    .content-section-header i {
+      color: var(--primary-color);
+    }
+    
+    .section-type-code .content-section-header i {
+      color: var(--accent-color);
+    }
+    
+    .section-type-theory .content-section-header i {
+      color: var(--info-color);
+    }
+    
+    .code-block {
+      background-color: var(--dark-color);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    
+    .code-block code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      color: #f8f8f2;
+    }
+    
+    /* Test Preview and Questions */
+    .test-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .test-question-preview {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .question-number {
+      font-weight: 600;
+      color: var(--primary-color);
+      min-width: 40px;
+    }
+    
+    .question-text {
+      flex: 1;
+    }
+    
+    .question-type {
+      background-color: var(--light-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    
+    .test-question {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .question-badge {
+      background-color: var(--light-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    
+    .test-questions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .question-answer {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .question-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .option-label:hover {
+      background-color: var(--light-color);
+    }
+    
+    .descriptive-answer {
+      min-height: 150px;
+    }
+    
+    .test-controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    /* Chat Section */
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 1rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .message {
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      max-width: 80%;
+    }
+    
+    .user-message {
+      align-self: flex-end;
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .ai-message {
+      align-self: flex-start;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+    }
+    
+    .chat-input-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    
+    .chat-input-container textarea {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      resize: none;
+      height: 60px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    /* Agent Details */
+    .agent-details-content {
+      padding: 1rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .agent-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .agent-icon-large {
+      font-size: 3rem;
+      color: var(--primary-color);
+      background-color: rgba(58, 134, 255, 0.1);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .agent-info {
+      flex: 1;
+    }
+    
+    .agent-capabilities {
+      margin-top: 2rem;
+    }
+    
+    .capability-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .capability-icon {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      min-width: 30px;
+    }
+    
+    /* Code Comparison */
+    .code-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .code-comparison {
+          grid-template-columns: 1fr;
+      }
+    }
+    
+    .code-column {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .code-column h4 {
+      margin-bottom: 0.8rem;
+      color: var(--text-color);
+    }
+    
+    .code-display {
+      background-color: var(--dark-color);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      overflow-x: auto;
+      color: #f8f8f2;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+    
+    .debug-issues, .debug-explanation {
+      margin: 1.5rem 0;
+    }
+    
+    .debug-issues h4, .debug-explanation h4 {
+      margin-bottom: 0.8rem;
+    }
+    
+    #debug-issues-list {
+      margin-left: 1.5rem;
+    }
+    
+    #debug-issues-list li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Results Table */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+    
+    .results-table th,
+    .results-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .results-table th {
+      background-color: var(--light-color);
+      font-weight: 600;
+    }
+    
+    .status-badge {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .status-badge.correct {
+      background-color: rgba(6, 214, 160, 0.2);
+      color: var(--success-color);
+    }
+    
+    .status-badge.wrong {
+      background-color: rgba(239, 71, 111, 0.2);
+      color: var(--danger-color);
+    }
+    
+    .status-badge.partially_correct {
+      background-color: rgba(255, 190, 11, 0.2);
+      color: var(--warning-color);
+    }
+    
+    .status-badge.not_answered {
+      background-color: rgba(108, 117, 125, 0.2);
+      color: var(--text-light);
+    }
+    
+    .score-summary {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .score-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      justify-content: center;
+    }
+    
+    .score-display span:first-child {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .score-label {
+      font-size: 0.8rem;
+    }
+    
+    .score-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .score-detail {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .detail-label {
+      font-weight: 500;
+      color: var(--text-light);
+    }
+    
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+    }
+    
+    .no-results i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .modal-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .close-modal {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    
+    .close-modal:hover {
+      color: var(--danger-color);
+    }
+    
+    .modal-body {
+      padding: 1.5rem;
+    }
+    
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      text-align: right;
+    }
+    
+    .question-text, .answer-text, .explanation-text {
+      margin-bottom: 1.5rem;
+    }
+    
+    .question-text h4, .answer-text h4, .explanation-text h4 {
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+    
+    .export-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: auto;
+    }
+    
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .result-header {
+          flex-direction: column;
+          align-items: flex-start;
+      }
+      
+      .action-buttons {
+          margin-top: 1rem;
+          width: 100%;
+          justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .main-container {
+          flex-direction: column;
+      }
+      
+      .agents-panel {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border-color);
+      }
+      
+      nav {
+          flex-direction: column;
+          padding: 1rem;
+      }
+      
+      .nav-links {
+          margin-top: 1rem;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+      
+      .code-comparison {
+          grid-template-columns: 1fr;
+      }
+      
+      .score-summary {
+          flex-direction: column;
+          align-items: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .action-buttons {
+          flex-direction: column;
+          width: 100%;
+      }
+      
+      .action-buttons button {
+          width: 100%;
+      }
+      
+      .header-actions {
+          margin-top: 1rem;
+      }
+    }
+      /* Make descriptive answer textareas larger */
+.descriptive-answer {
+    min-height: 200px;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Make code editor textareas larger */
+.code-editor {
+    min-height: 250px;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    font-family: monospace;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    white-space: pre;
+    tab-size: 4;
+    resize: vertical; /* Allow vertical resizing */
+    background-color: #f8f8f8;
+}
+
+/* Make the question container take more width */
+.test-question {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Make the test-questions-container take full width */
+.test-questions-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Ensure the container takes maximum available width */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Increase if needed */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Ensure the test-taking-section takes full width */
+#test-taking-section {
+width:100%;
+}
+
+/* Add these styles to your CSS file */
+.conversation-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-header {
+    padding: 12px 20px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.conversation-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    line-height: 1.4;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.agent-message {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+
+.conversation-input {
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 0 0 8px 8px;
+}
+
+.conversation-input textarea {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px;
+    resize: none;
+    height: 40px;
+    font-family: inherit;
+    margin-right: 10px;
+}
+
+.conversation-input button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #888;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+    animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <h1>AI Tutoring System</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="export-btn" class="header-btn">
+                        <i class="fas fa-file-export"></i> Export
+                    </button>
+                    <button id="theme-toggle" class="header-btn">
+                        <i class="fas fa-moon"></i> Toggle Theme
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <div class="main-container">
+            <!-- AI Agents Navigation Panel -->
+            <aside class="agents-panel">
+                <h3>AI AGENTS</h3>
+                <ul class="agents-list">
+                    <li data-agent="planner" class="agent-item">
+                        <i class="fas fa-sitemap"></i> Planner - structure of the course
+                    </li>
+                    
+                    <li data-agent="test" class="agent-item">
+                        <i class="fas fa-tasks"></i> Test manager agent
+                    </li>
+                </ul>
+            </aside>
+
+            <main>
+                <!-- Welcome Section -->
+                <section id="welcome-section" class="active-section">
+                    <div class="welcome-container">
+                        <div class="welcome-header">
+                            <i class="fas fa-robot welcome-icon"></i>
+                            <h2>Welcome to AI Tutoring System</h2>
+                        </div>
+                        <p class="welcome-text">Select an AI agent from the left panel or search for a topic below to start learning.</p>
+                        <div class="welcome-features">
+                            <div class="feature-card">
+                                <i class="fas fa-sitemap"></i>
+                                <h3>Course Planning</h3>
+                                <p>Structure your learning path</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-book"></i>
+                                <h3>Theory Learning</h3>
+                                <p>Understand concepts deeply</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-code"></i>
+                                <h3>Coding Practice</h3>
+                                <p>Learn by doing</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Test Your Knowledge</h3>
+                                <p>Evaluate your understanding</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Generation Section -->
+                <section id="content-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2>Generate Educational Content</h2>
+                        <p>Our AI agents will create comprehensive learning materials for your topic.</p>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="form-group">
+                            <label for="content-query">What would you like to learn about?</label>
+                            <textarea id="content-query" placeholder="e.g., Introduction to Python decorators, How databases work, Understanding neural networks..."></textarea>
+                        </div>
+                        <button id="generate-content-btn" class="primary-btn">
+                            <i class="fas fa-magic"></i> Generate Content
+                        </button>
+                    </div>
+
+                    <div id="content-loading" class="loading-container hidden">
+                        <div class="loading-animation">
+                            <div class="agent-icon"><i class="fas fa-brain"></i></div>
+                            <div class="agent-icon"><i class="fas fa-code"></i></div>
+                            <div class="agent-icon"><i class="fas fa-book"></i></div>
+                            <div class="agent-icon"><i class="fas fa-bug"></i></div>
+                        </div>
+                        <p>Our AI agents are working together to create your content...</p>
+                    </div>
+
+                    <div id="content-result" class="result-container hidden">
+                        <div class="result-header">
+                            <h3 id="content-title">Topic Title</h3>
+                            <div class="action-buttons">
+                                <button id="export-content-pdf" class="secondary-btn">
+                                    <i class="fas fa-file-pdf"></i> Export PDF
+                                </button>
+                                <button id="export-content-md" class="secondary-btn">
+                                    <i class="fas fa-file-alt"></i> Export Markdown
+                                </button>
+                                <button id="create-test-from-content" class="secondary-btn">
+                                    <i class="fas fa-tasks"></i> Create Test
+                                </button>
+                            </div>
+                        </div>
+                        <div id="content-sections" class="content-sections"></div>
+                    </div>
+                </section>
+
+                <!-- Test Creation Section -->
+                <section id="test-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2>Create Assessment Tests</h2>
+                        <p>Generate customized tests to evaluate understanding of any topic.</p>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="form-group">
+                            <label for="test-topic">Test Topic</label>
+                            <input type="text" id="test-topic" placeholder="e.g., Python Basics, Database Design">
+                        </div>
+                        <div class="form-group">
+                            <label for="test-difficulty">Difficulty Level</label>
+                            <select id="test-difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="test-questions">Number of Questions</label>
+                            <input type="number" id="test-questions" min="1" max="20" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Content Reference (Optional)</label>
+                            <select id="content-reference">
+                                <option value="">None - Create from topic</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <button id="generate-test-btn" class="primary-btn">
+                            <i class="fas fa-tasks"></i> Generate Test
+                        </button>
+                    </div>
+
+                    <div id="test-loading" class="loading-container hidden">
+                        <div class="loading-animation">
+                            <div class="agent-icon"><i class="fas fa-clipboard-check"></i></div>
+                        </div>
+                        <p>Our Test Agent is creating your assessment...</p>
+                    </div>
+
+                    <div id="test-result" class="result-container hidden">
+                        <div class="result-header">
+                            <h3 id="test-title">Test Title</h3>
+                            <div class="action-buttons">
+                                <button id="export-test-pdf" class="secondary-btn">
+                                    <i class="fas fa-file-pdf"></i> Export PDF
+                                </button>
+                                <button id="take-test" class="primary-btn">
+                                    <i class="fas fa-pen"></i> Take Test
+                                </button>
+                            </div>
+                        </div>
+                        <div id="test-preview" class="test-preview"></div>
+                    </div>
+                </section>
+
+                <!-- Test Taking Section (Hidden initially) -->
+                <section id="test-taking-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2 id="active-test-title">Test Title</h2>
+                        <p>Answer all questions to the best of your ability.</p>
+                    </div>
+
+                    <div id="test-questions-container" class="test-questions-container"></div>
+
+                    <div class="test-controls">
+                        <button id="submit-test-btn" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Test
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Debugging Section -->
+                <section id="debug-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2>Debug Your Code</h2>
+                        <p>Our Debugging Agent will analyze and fix issues in your code.</p>
+                    </div>
+
+                    <div class="input-form">
+                        <div class="form-group">
+                            <label for="code-language">Programming Language</label>
+                            <select id="code-language">
+                                <option value="python" selected>Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="java">Java</option>
+                                <option value="c">C</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="code-input">Your Code</label>
+                            <textarea id="code-input" class="code-editor" placeholder="Paste your code here..."></textarea>
+                        </div>
+                        <button id="debug-code-btn" class="primary-btn">
+                            <i class="fas fa-bug"></i> Debug Code
+                        </button>
+                    </div>
+
+                    <div id="debug-loading" class="loading-container hidden">
+                        <div class="loading-animation">
+                            <div class="agent-icon"><i class="fas fa-bug"></i></div>
+                        </div>
+                        <p>Our Debugging Agent is analyzing your code...</p>
+                    </div>
+
+                    <div id="debug-result" class="result-container hidden">
+                        <div class="result-header">
+                            <h3>Debugging Results</h3>
+                        </div>
+                        <div class="debug-issues">
+                            <h4>Issues Found:</h4>
+                            <ul id="debug-issues-list"></ul>
+                        </div>
+                        <div class="code-comparison">
+                            <div class="code-column">
+                                <h4>Original Code</h4>
+                                <pre><code id="original-code" class="code-display"></code></pre>
+                            </div>
+                            <div class="code-column">
+                                <h4>Debugged Code</h4>
+                                <pre><code id="debugged-code" class="code-display"></code></pre>
+                            </div>
+                        </div>
+                        <div class="debug-explanation">
+                            <h4>Explanation:</h4>
+                            <div id="debug-explanation-text"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section id="results-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2>Test Results</h2>
+                        <p>Review your test performance and get detailed feedback.</p>
+                    </div>
+
+                    <div id="no-results" class="no-results">
+                        <i class="fas fa-search"></i>
+                        <p>No test results available yet. Take a test first!</p>
+                    </div>
+
+                    <div id="test-results" class="hidden">
+                        <div class="result-header">
+                            <h3 id="result-test-title">Test Results</h3>
+                            <div class="score-summary">
+                                <div class="score-display">
+                                    <span id="result-percentage">0%</span>
+                                    <span class="score-label">Score</span>
+                                </div>
+                                <div class="score-details">
+                                    <div class="score-detail">
+                                        <span class="detail-label">Total Points:</span>
+                                        <span id="result-total-score">0</span>
+                                    </div>
+                                    <div class="score-detail">
+                                        <span class="detail-label">Maximum:</span>
+                                        <span id="result-max-score">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Evaluation</th>
+                                    <th>Feedback</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-table-body">
+                                <!-- Will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Agent Details Section -->
+                <section id="agent-details-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2 id="agent-details-title">Agent Details</h2>
+                        <p id="agent-details-subtitle">Learn more about this AI agent's capabilities</p>
+                    </div>
+                    <div id="agent-details-content" class="agent-details-content">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </section>
+
+                <!-- Chat Section -->
+                <section id="chat-section" class="hidden-section">
+                    <div class="section-header">
+                        <h2 id="chat-agent-name">Chat with AI Agent</h2>
+                        <p>Ask questions and get personalized assistance</p>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Messages will appear here -->
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea id="chat-input" placeholder="Type your message here..."></textarea>
+                        <button id="send-message-btn" class="primary-btn"> <i class="fas fa-paper-plane"></i> </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for topics or ask a question...">
+                <button id="search-btn" class="primary-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Answer Modal -->
+        <div id="answer-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Expected Answer</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="question-text">
+                        <h4>Question:</h4>
+                        <p id="modal-question-text"></p>
+                    </div>
+                    <div class="answer-text">
+                        <h4>Correct Answer:</h4>
+                        <div id="modal-answer-text"></div>
+                    </div>
+                    <div class="explanation-text">
+                        <h4>Explanation:</h4>
+                        <div id="modal-explanation-text"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="close-modal-btn secondary-btn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Modal -->
+        <div id="export-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Export Conversation</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Export the conversation between you and the AI agent.</p>
+                    <div class="export-options">
+                        <button id="export-pdf-btn" class="secondary-btn">
+                            <i class="fas fa-file-pdf"></i> Export as PDF
+                        </button>
+                        <button id="export-text-btn" class="secondary-btn">
+                            <i class="fas fa-file-alt"></i> Export as Text
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="close-modal-btn secondary-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 AI Tutoring System | Educational Platform</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>// Main script for AI Tutoring System
+      document.addEventListener('DOMContentLoaded', function() {
+        // API base URL - change this to match your Flask server
+        const API_BASE_URL = 'http://localhost:5000/api';
+        
+        // Track generated content for reference in test creation
+        let generatedContents = [];
+        let generatedTests = [];
+        
+        // Track conversation history
+        let conversationHistory = [];
+        
+        // Current active agent
+        let currentAgent = null;
+        
+        // Setup event listeners for all main actions
+        setupEventListeners();
+        
+        // Load any previously generated content for the content reference dropdown
+        loadGeneratedContents();
+        
+        /**
+         * Set up all event listeners for buttons and interactive elements
+         */
+        function setupEventListeners() {
+            // Theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Export button
+            document.getElementById('export-btn').addEventListener('click', showExportModal);
+            
+            // Agent selection
+            setupAgentSelection();
+            
+            // Search functionality
+            document.getElementById('search-btn').addEventListener('click', handleSearch);
+            document.getElementById('search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+            
+            // Content Generation
+            document.getElementById('generate-content-btn').addEventListener('click', generateContent);
+            document.getElementById('export-content-pdf').addEventListener('click', () => exportContent('pdf'));
+            document.getElementById('export-content-md').addEventListener('click', () => exportContent('markdown'));
+            document.getElementById('create-test-from-content').addEventListener('click', createTestFromContent);
+            document.getElementById('export-test-pdf').addEventListener('click', function() {
+            exportTest('pdf');
+            });
+            
+            // Test Creation
+            document.getElementById('generate-test-btn').addEventListener('click', generateTest);
+            document.getElementById('take-test').addEventListener('click', takeTest);
+            document.getElementById('submit-test-btn').addEventListener('click', submitTest);
+            
+            // Debug Section
+            document.getElementById('debug-code-btn').addEventListener('click', debugCode);
+            
+            // Chat functionality
+            document.getElementById('send-message-btn').addEventListener('click', sendChatMessage);
+            document.getElementById('chat-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendChatMessage();
+                }
+            });
+            
+            // Export functionality
+            document.getElementById('export-pdf-btn').addEventListener('click', () => exportConversation('pdf'));
+            document.getElementById('export-text-btn').addEventListener('click', () => exportConversation('text'));
+            
+            // Modal functionality
+            setupModalFunctionality();
+            
+            // Results section - view answer
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('view-answer-btn')) {
+                    const questionId = e.target.getAttribute('data-question-id');
+                    const testId = e.target.getAttribute('data-test-id');
+                    showExpectedAnswer(testId, questionId);
+                }
+            });
+        }
+        
+        /**
+         * Toggle between light and dark theme
+         */
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggleIcon = document.querySelector('#theme-toggle i');
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                themeToggleIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                themeToggleIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        /**
+         * Load saved theme preference
+         */
+        function loadThemePreference() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggleIcon = document.querySelector('#theme-toggle i');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggleIcon.className = 'fas fa-sun';
+            }
+        }
+        
+        // Load theme preference on startup
+        loadThemePreference();
+        
+        /**
+         * Set up agent selection functionality
+         */
+        function setupAgentSelection() {
+            const agentItems = document.querySelectorAll('.agent-item');
+            
+            agentItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const agentType = this.getAttribute('data-agent');
+                    
+                    // Remove active class from all agents
+                    agentItems.forEach(agent => agent.classList.remove('active'));
+                    
+                    // Add active class to selected agent
+                    this.classList.add('active');
+                    
+                    // Set current agent
+                    currentAgent = agentType;
+                    
+                    // Show appropriate section based on agent type
+                    showAgentSection(agentType);
+                });
+            });
+        }
+        
+        /**
+         * Show appropriate section based on selected agent
+         */
+        function showAgentSection(agentType) {
+            // Hide all sections
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden-section');
+                section.classList.remove('active-section');
+            });
+            
+            // Show appropriate section based on agent type
+            switch (agentType) {
+                case 'planner':
+                    document.getElementById('content-section').classList.remove('hidden-section');
+                    document.getElementById('content-section').classList.add('active-section');
+                    break;
+                case 'theory':
+                    showAgentDetails('Theory Agent', 'Learn concepts and theories with comprehensive explanations', 'book');
+                    break;
+                case 'code':
+                    showAgentDetails('Code Agent', 'Generate and understand code examples across multiple languages', 'code');
+                    break;
+                case 'debugging':
+                    document.getElementById('debug-section').classList.remove('hidden-section');
+                    document.getElementById('debug-section').classList.add('active-section');
+                    break;
+                case 'query':
+                    showChatInterface('Query Agent');
+                    break;
+                case 'test':
+                    document.getElementById('test-section').classList.remove('hidden-section');
+                    document.getElementById('test-section').classList.add('active-section');
+                    break;
+                default:
+                    // Default to welcome section
+                    document.getElementById('welcome-section').classList.remove('hidden-section');
+                    document.getElementById('welcome-section').classList.add('active-section');
+            }
+        }
+        
+        /**
+         * Show agent details section with specific agent information
+         */
+        function showAgentDetails(agentName, description, iconName) {
+            const detailsSection = document.getElementById('agent-details-section');
+            const detailsTitle = document.getElementById('agent-details-title');
+            const detailsSubtitle = document.getElementById('agent-details-subtitle');
+            const detailsContent = document.getElementById('agent-details-content');
+            
+            // Set title and subtitle
+            detailsTitle.textContent = agentName;
+            detailsSubtitle.textContent = description;
+            
+            // Create agent card content
+            let content = `
+                <div class="agent-card">
+                    <div class="agent-icon-large">
+                        <i class="fas fa-${iconName}"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h3>${agentName}</h3>
+                        <p>${description}</p>
+                        <button id="start-chat-with-agent" class="primary-btn">
+                            <i class="fas fa-comments"></i> Start Conversation
+                        </button>
+                    </div>
+                </div>
+                <div class="agent-capabilities">
+                    <h3>Capabilities</h3>
+            `;
+            
+            // Add capabilities based on agent type
+            if (agentName.includes('Theory')) {
+                content += `
+                    <div id="agent-conversation" class="conversation-container" style="display: none;">
+                      <div class="conversation-header">
+                          <h3 id="conversation-agent-title">Theory Agent</h3>
+                          <button id="close-conversation" class="close-btn"><i class="fas fa-times"></i></button>
+                      </div>
+                      
+                      <div id="conversation-messages" class="conversation-messages">
+                          <!-- Messages will be added here dynamically -->
+                      </div>
+                      
+                      <div class="conversation-input">
+                          <textarea id="user-message" placeholder="Ask a question..."></textarea>
+                          <button id="send-message" class="primary-btn">
+                              <i class="fas fa-paper-plane"></i>
+                          </button>
+                      </div>
+                  </div>
+                `;
+            } else if (agentName.includes('Code')) {
+                content += `
+                    <div class="capability-item">
+                        <div class="capability-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h4>Code Generation</h4>
+                            <p>Creates code examples in multiple programming languages.</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <div class="capability-icon">
+                            <i class="fas fa-comment-code"></i>
+                        </div>
+                        <div>
+                            <h4>Code Explanation</h4>
+                            <p>Explains how code works line by line with detailed comments.</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <div class="capability-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Language Translation</h4>
+                            <p>Converts code between different programming languages.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            content += `</div>`;
+            
+            // Set content
+            detailsContent.innerHTML = content;
+            
+            // Add event listener to start chat button
+            setTimeout(() => {
+                const startChatBtn = document.getElementById('start-chat-with-agent');
+                if (startChatBtn) {
+                    startChatBtn.addEventListener('click', () => {
+                        showChatInterface(agentName);
+                    });
+                }
+            }, 100);
+            
+            // Show the section
+            detailsSection.classList.remove('hidden-section');
+            detailsSection.classList.add('active-section');
+        }
+        
+        /**
+         * Show chat interface for interacting with an agent
+         */
+        function showChatInterface(agentName) {
+            const chatSection = document.getElementById('chat-section');
+            const chatAgentName = document.getElementById('chat-agent-name');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            // Set agent name
+            chatAgentName.textContent = `Chat with ${agentName}`;
+            
+            // Clear previous messages
+            chatMessages.innerHTML = '';
+            
+            // Add welcome message
+            addChatMessage(`Hi there! I'm the ${agentName}. How can I help you today?`, 'ai');
+            
+            // Show chat section
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden-section');
+                section.classList.remove('active-section');
+            });
+            
+            chatSection.classList.remove('hidden-section');
+            chatSection.classList.add('active-section');
+            
+            // Focus on input
+            document.getElementById('chat-input').focus();
+        }
+        
+        /**
+         * Add a message to the chat interface
+         */
+        function addChatMessage(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = message;
+            
+            chatMessages.appendChild(messageDiv);
+            
+            // Save to conversation history
+            conversationHistory.push({
+                sender: sender,
+                message: message,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        /**
+         * Send a chat message
+         */
+        function sendChatMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addChatMessage(message, 'user');
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // In a real implementation, you would send this to your backend
+            // For now, we'll simulate a response
+            setTimeout(() => {
+                const responses = {
+                    'planner': "I'll help you structure your learning path. What topic would you like to explore?",
+                    'theory': "I can explain theoretical concepts in detail. What would you like to learn about?",
+                    'code': "I can generate code examples or explain code. What programming task are you working on?",
+                    'debugging': "I'll help you find and fix bugs in your code. What issues are you experiencing?",
+                    'query': "I can answer any questions you have. What would you like to know?",
+                    'test': "I can create tests to evaluate your knowledge. What topic should I test you on?"
+                };
+                
+                const response = responses[currentAgent] || "How can I assist you today?";
+                addChatMessage(response, 'ai');
+            }, 1000);
+        }
+        
+        /**
+         * Handle search functionality
+         */
+        function handleSearch() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim();
+            
+            if (!query) return;
+            
+            // In a real implementation, you would send this to your backend
+            // For now, we'll simulate by showing the chat interface with the query
+            
+            // Set current agent to query agent
+            currentAgent = 'query';
+            
+            // Update active agent in sidebar
+            document.querySelectorAll('.agent-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-agent') === 'query') {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Show chat interface
+            showChatInterface('Query Agent');
+            
+            // Add the search query as a user message
+            addChatMessage(query, 'user');
+            
+            // Simulate response
+            setTimeout(() => {
+                addChatMessage(`I found some information about "${query}". What specific aspects would you like to know?`, 'ai');
+            }, 1000);
+            
+            // Clear search input
+            searchInput.value = '';
+        }
+        
+        /**
+         * Show export modal
+         */
+        function showExportModal() {
+            document.getElementById('export-modal').classList.remove('hidden');
+        }
+        
+        /**
+         * Export conversation history
+         */
+        function exportConversation(format) {
+            if (conversationHistory.length === 0) {
+                alert('No conversation to export');
+                return;
+            }
+            
+            if (format === 'pdf') {
+                // Use jsPDF to generate PDF
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                let y = 20;
+                doc.setFontSize(16);
+                doc.text('AI Tutoring System - Conversation Export', 20, y);
+                y += 10;
+                
+                doc.setFontSize(12);
+                doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, y);
+                y += 10;
+                
+                doc.setFontSize(10);
+                
+                conversationHistory.forEach(msg => {
+                    const sender = msg.sender === 'user' ? 'You' : 'AI';
+                    const text = `${sender}: ${msg.message}`;
+                    
+                    // Split long text into multiple lines
+                    const textLines = doc.splitTextToSize(text, 170);
+                    
+                    // Check if we need a new page
+                    if (y + (textLines.length * 5) > 280) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    doc.text(textLines, 20, y);
+                    y += (textLines.length * 6) + 5;
+                });
+                
+                // Save the PDF
+                doc.save('conversation-export.pdf');
+            } else if (format === 'text') {
+                // Generate text file
+                let text = 'AI Tutoring System - Conversation Export\n';
+                text += `Date: ${new Date().toLocaleDateString()}\n\n`;
+                
+                conversationHistory.forEach(msg => {
+                    const sender = msg.sender === 'user' ? 'You' : 'AI';
+                    text += `${sender}: ${msg.message}\n\n`;
+                });
+                
+                // Create download link
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'conversation-export.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+            
+            // Hide modal
+            document.getElementById('export-modal').classList.add('hidden');
+        }
+        
+        /**
+         * Set up the modal functionality
+         */
+        function setupModalFunctionality() {
+            const modals = document.querySelectorAll('.modal');
+            const closeButtons = document.querySelectorAll('.close-modal, .close-modal-btn');
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modals.forEach(modal => {
+                        modal.classList.add('hidden');
+                    });
+                });
+            });
+            
+            // Close modal when clicking outside
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.add('hidden');
+                    }
+                });
+            });
+        }
+        
+        /**
+         * Generate educational content based on user query
+         */
+        async function generateContent() {
+            const query = document.getElementById('content-query').value.trim();
+            
+            if (!query) {
+                alert('Please enter a topic or question');
+                return;
+            }
+            
+            // Show loading state
+            document.getElementById('content-loading').classList.remove('hidden');
+            document.getElementById('content-result').classList.add('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-content`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayGeneratedContent(data);
+                    // Save the content reference for later use in test creation
+                    saveContentReference(data);
+                } else {
+                    alert(`Error: ${data.error || 'Failed to generate content'}`);
+                }
+            } catch (error) {
+                console.error('Content generation error:', error);
+                alert('Failed to connect to the server. Please try again later.');
+            } finally {
+                document.getElementById('content-loading').classList.add('hidden');
+            }
+        }
+        
+        /**
+         * Display the generated content in the UI
+         */
+        function displayGeneratedContent(data) {
+            const contentResult = document.getElementById('content-result');
+            const contentTitle = document.getElementById('content-title');
+            const contentSections = document.getElementById('content-sections');
+            
+            // Set title
+            contentTitle.textContent = data.content.title;
+            
+            // Clear existing sections
+            contentSections.innerHTML = '';
+            
+            // Add each section
+            data.content.sections.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'content-section';
+                
+                const sectionTitle = document.createElement('h4');
+                sectionTitle.textContent = section.topic;
+                sectionDiv.appendChild(sectionTitle);
+                
+                const sectionContent = document.createElement('div');
+                
+                if (section.type === 'code') {
+                    // For code sections, use syntax highlighting
+                    const pre = document.createElement('pre');
+                    const code = document.createElement('code');
+                    code.className = 'language-python'; // Default to python
+                    code.textContent = section.content;
+                    pre.appendChild(code);
+                    sectionContent.appendChild(pre);
+                    
+                    // Initialize syntax highlighting for this element
+                    hljs.highlightElement(code);
+                } else {
+                    // For theory sections, render markdown
+                    const converter = new showdown.Converter();
+                    sectionContent.innerHTML = converter.makeHtml(section.content);
+                }
+                
+                sectionDiv.appendChild(sectionContent);
+                contentSections.appendChild(sectionDiv);
+            });
+            
+            // Show the result
+            contentResult.classList.remove('hidden');
+        }
+        
+        /**
+         * Save content reference for later use in test creation
+         */
+        function saveContentReference(data) {
+            // Store the content ID and title for later reference
+            const contentRef = {
+                id: data.content_id,
+                title: data.content.title
+            };
+            
+            // Add to our tracking array
+            generatedContents.push(contentRef);
+            
+            // Update the content reference dropdown in the test section
+            updateContentReferenceDropdown();
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('generatedContents', JSON.stringify(generatedContents));
+        }
+        
+        /**
+         * Load previously generated contents from localStorage
+         */
+        function loadGeneratedContents() {
+            const savedContents = localStorage.getItem('generatedContents');
+            if (savedContents) {
+                generatedContents = JSON.parse(savedContents);
+                // Update dropdown
+                updateContentReferenceDropdown();
+            }
+        }
+        
+        /**
+         * Update the content reference dropdown with available content
+         */
+        function updateContentReferenceDropdown() {
+            const dropdown = document.getElementById('content-reference');
+            
+            // Keep the first option (None)
+            const firstOption = dropdown.options[0];
+            dropdown.innerHTML = '';
+            dropdown.appendChild(firstOption);
+            
+            // Add each content as an option
+            generatedContents.forEach(content => {
+                const option = document.createElement('option');
+                option.value = content.id;
+                option.textContent = content.title;
+                dropdown.appendChild(option);
+            });
+        }
+        
+        /**
+         * Export content in specified format
+         */
+        async function exportContent(format) {
+            // Get the content ID from the currently displayed content
+            const contentTitle = document.getElementById('content-title').textContent;
+            console.log("content title:"+contentTitle)
+            const contentRef = generatedContents.find(c => c.title === contentTitle);
+            
+            if (!contentRef) {
+                alert('Content reference not found');
+                return;
+            }
+            
+            // Create a URL for the export endpoint
+            const url = `${API_BASE_URL}/export-content/${contentRef.id}?format=${format}`;
+            
+            // Either open in new tab or trigger download
+            if (format === 'pdf') {
+                window.open(url, '_blank');
+            } else {
+                // For other formats, trigger a download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `content_${contentRef.id}.${format === 'markdown' ? 'md' : format}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        //exporting test
+        async function exportTest(format) {
+    // Get the test ID from the currently displayed test
+    const testTitle = document.getElementById('test-title').textContent;
+    console.log("testTitle:"+testTitle)
+    const testRef = generatedTests.find(t => t.title === testTitle);
+    
+    if (!testRef) {
+        alert('Test reference not found');
+        return;
+    }
+    
+    try {
+        // Create a URL for the export endpoint
+        const url = `${API_BASE_URL}/export-test/${testRef.id}?format=${format}`;
+        
+        // Use fetch to get the file as a blob
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        
+        // Get the blob from the response
+        const blob = await response.blob();
+        
+        // Create a download link
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `test_${testRef.id}.${format === 'markdown' ? 'md' : format}`;
+        
+        // Append to the document, click and remove
+        document.body.appendChild(a);
+        a.click();
+        
+        // Clean up
+        window.URL.revokeObjectURL(downloadUrl);
+        document.body.removeChild(a);
+    } catch (error) {
+        console.error('Export failed:', error);
+        alert(`Failed to export test: ${error.message}`);
+    }
+}
+        
+        /**
+         * Create a test from currently displayed content
+         */
+        function createTestFromContent() {
+            // Get the content ID from the currently displayed content
+            const contentTitle = document.getElementById('content-title').textContent;
+            const contentRef = generatedContents.find(c => c.title === contentTitle);
+            
+            if (!contentRef) {
+                alert('Content reference not found');
+                return;
+            }
+            
+            // Switch to test section
+            showAgentSection('test');
+            
+            // Set the content reference in the dropdown
+            document.getElementById('content-reference').value = contentRef.id;
+            
+            // Set the test topic to match the content title
+            document.getElementById('test-topic').value = contentTitle;
+        }
+        
+        /**
+         * Generate a test based on user input
+         */
+        async function generateTest() {
+            const topic = document.getElementById('test-topic').value.trim();
+            const difficulty = document.getElementById('test-difficulty').value;
+            const numQuestions = document.getElementById('test-questions').value;
+            const contentId = document.getElementById('content-reference').value;
+            
+            if (!topic && !contentId) {
+                alert('Please enter a topic or select a content reference');
+                return;
+            }
+            
+            // Show loading state
+            document.getElementById('test-loading').classList.remove('hidden');
+            document.getElementById('test-result').classList.add('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-test`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        topic,
+                        content_id: contentId,
+                        difficulty,
+                        num_questions: parseInt(numQuestions)
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayGeneratedTest(data);
+                } else {
+                    alert(`Error: ${data.error || 'Failed to generate test'}`);
+                }
+            } catch (error) {
+                console.error('Test generation error:', error);
+                alert('Failed to connect to the server. Please try again later.');
+            } finally {
+                document.getElementById('test-loading').classList.add('hidden');
+            }
+        }
+        
+        /**
+         * Display the generated test in the UI
+         */
+        function displayGeneratedTest(data) {
+            const testResult = document.getElementById('test-result');
+            const testTitle = document.getElementById('test-title');
+            const testPreview = document.getElementById('test-preview');
+            
+            // Store the test ID for later use
+            testResult.setAttribute('data-test-id', data.test_id);
+            
+            // Set title
+            testTitle.textContent = data.test.title;
+            
+            // Clear preview
+            testPreview.innerHTML = '';
+            
+            // Add a preview of each question
+            data.test.questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'test-question-preview';
+                
+                const questionNumber = document.createElement('span');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = `Q${index + 1}.`;
+                
+                const questionText = document.createElement('span');
+                questionText.className = 'question-text';
+                questionText.textContent = question.text.substring(0, 100) + (question.text.length > 100 ? '...' : '');
+                
+                const questionType = document.createElement('span');
+                questionType.className = 'question-type';
+                questionType.textContent = getQuestionTypeLabel(question.type);
+                
+                questionDiv.appendChild(questionNumber);
+                questionDiv.appendChild(questionText);
+                questionDiv.appendChild(questionType);
+                
+                testPreview.appendChild(questionDiv);
+            });
+            
+            // Show the result
+            testResult.classList.remove('hidden');
+        }
+        
+        /**
+         * Convert question type to readable label
+         */
+        function getQuestionTypeLabel(type) {
+            switch (type) {
+                case 'mcq': return 'Multiple Choice';
+                case 'code': return 'Coding';
+                case 'descriptive': return 'Descriptive';
+                default: return type;
+            }
+        }
+        
+        /**
+         * Start taking the test
+         */
+        function takeTest() {
+            // Get test ID
+            const testResult = document.getElementById('test-result');
+            const testId = testResult.getAttribute('data-test-id');
+            
+            if (!testId) {
+                alert('Test ID not found');
+                return;
+            }
+            
+            // Fetch test details
+            fetch(`${API_BASE_URL}/export-test/${testId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    // Set up the test taking interface
+                    setupTestTakingInterface(testId, data);
+                    
+                    // Hide test section and show test taking section
+                    document.getElementById('test-section').classList.add('hidden-section');
+                    document.getElementById('test-taking-section').classList.remove('hidden-section');
+                    
+                    // Set test title
+                    document.getElementById('active-test-title').textContent = data.title;
+                })
+                .catch(error => {
+                    console.error('Error setting up test:', error);
+                    alert(`Error: ${error.message || 'Failed to start test'}`);
+                });
+        }
+        
+        /**
+         * Set up the test taking interface with questions
+         */
+        function setupTestTakingInterface(testId, testData) {
+            const questionsContainer = document.getElementById('test-questions-container');
+            questionsContainer.innerHTML = '';
+            
+            // Set test ID for later submission
+            questionsContainer.setAttribute('data-test-id', testId);
+            
+            // Create each question
+            testData.questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'test-question';
+                questionDiv.setAttribute('data-question-id', question.id);
+                
+                // Question header
+                const header = document.createElement('div');
+                header.className = 'question-header';
+                
+                const questionNumber = document.createElement('span');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = `Question ${index + 1}`;
+                
+                const questionType = document.createElement('span');
+                questionType.className = 'question-badge';
+                questionType.textContent = getQuestionTypeLabel(question.type);
+                
+                header.appendChild(questionNumber);
+                header.appendChild(questionType);
+                questionDiv.appendChild(header);
+                
+                // Question text
+                const textDiv = document.createElement('div');
+                textDiv.className = 'question-text';
+                
+                // Use markdown for question text
+                const converter = new showdown.Converter();
+                textDiv.innerHTML = converter.makeHtml(question.text);
+                
+                questionDiv.appendChild(textDiv);
+                
+                // Answer section depends on question type
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'question-answer';
+                
+                if (question.type === 'mcq') {
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'question-options';
+                    
+                    question.options.forEach((option, optIndex) => {
+                        const optionLabel = document.createElement('label');
+                        optionLabel.className = 'option-label';
+                        
+                        const radio = document.createElement('input');
+                        radio.type = 'radio';
+                        radio.name = `question_${question.id}`;
+                        radio.value = option;
+                        
+                        const optionText = document.createElement('span');
+                        optionText.textContent = option;
+                        
+                        optionLabel.appendChild(radio);
+                        optionLabel.appendChild(optionText);
+                        optionsDiv.appendChild(optionLabel);
+                    });
+                    
+                    answerDiv.appendChild(optionsDiv);
+                                  } else if (question.type === 'code') {
+                    const textarea = document.createElement('textarea');
+                    textarea.className = 'code-editor';
+                    textarea.placeholder = 'Write your code solution here...';
+                    textarea.rows = 15; // Increase the number of rows
+                    textarea.setAttribute('spellcheck', 'false'); // Disable spell checking for code
+                    
+                    // Add tab key handling for indentation in code editor
+                    textarea.addEventListener('keydown', function(e) {
+                        if (e.key === 'Tab') {
+                            e.preventDefault();
+                            const start = this.selectionStart;
+                            const end = this.selectionEnd;
+                            
+                            // Insert tab at the cursor position
+                            this.value = this.value.substring(0, start) + 
+                                        "    " + // 4 spaces for a tab
+                                        this.value.substring(end);
+                            
+                            // Move cursor after the inserted tab
+                            this.selectionStart = this.selectionEnd = start + 4;
+                        }
+                    });
+                    
+                    answerDiv.appendChild(textarea);
+                } else { // descriptive
+                    const textarea = document.createElement('textarea');
+                    textarea.className = 'descriptive-answer';
+                    textarea.placeholder = 'Write your answer here...';
+                    textarea.rows = 12; // Increase the number of rows
+                    
+                    answerDiv.appendChild(textarea);
+                }
+                
+                questionDiv.appendChild(answerDiv);
+                questionsContainer.appendChild(questionDiv);
+            });
+        }
+        
+        /**
+         * Submit test answers for evaluation
+         */
+        async function submitTest() {
+            const questionsContainer = document.getElementById('test-questions-container');
+            const testId = questionsContainer.getAttribute('data-test-id');
+            
+            if (!testId) {
+                alert('Test ID not found');
+                return;
+            }
+            
+            // Collect answers for each question
+            const answers = [];
+            const questionDivs = questionsContainer.querySelectorAll('.test-question');
+            
+            questionDivs.forEach(div => {
+                const questionId = div.getAttribute('data-question-id');
+                let answer = null;
+                
+                // Check if it's MCQ (radio buttons)
+                const selectedRadio = div.querySelector('input[type="radio"]:checked');
+                if (selectedRadio) {
+                    answer = selectedRadio.value;
+                } else {
+                    // Check if it's a textarea (code or descriptive)
+                    const textarea = div.querySelector('textarea');
+                    if (textarea) {
+                        answer = textarea.value.trim();
+                    }
+                }
+                
+                if (answer) {
+                    answers.push({
+                        question_id: questionId,
+                        answer: answer
+                    });
+                }
+            });
+            
+            // Submit answers to API
+            try {
+                const response = await fetch(`${API_BASE_URL}/submit-test`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        test_id: testId,
+                        answers: answers
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Display results
+                    displayTestResults(data);
+                    
+                    // Switch to results section
+                    document.getElementById('test-taking-section').classList.add('hidden-section');
+                    document.getElementById('results-section').classList.remove('hidden-section');
+                    document.getElementById('results-section').classList.add('active-section');
+                } else {
+                    alert(`Error: ${data.error || 'Failed to submit test'}`);
+                }
+            } catch (error) {
+                console.error('Test submission error:', error);
+                alert('Failed to connect to the server. Please try again later.');
+            }
+        }
+        
+        /**
+         * Display test results in the results section
+         */
+        function displayTestResults(data) {
+            const noResults = document.getElementById('no-results');
+            const testResults = document.getElementById('test-results');
+            const resultTestTitle = document.getElementById('result-test-title');
+            const resultPercentage = document.getElementById('result-percentage');
+            const resultTotalScore = document.getElementById('result-total-score');
+            const resultMaxScore = document.getElementById('result-max-score');
+            const resultsTableBody = document.getElementById('results-table-body');
+            
+            // Hide no results message
+            noResults.classList.add('hidden');
+            
+            // Set basic result data
+            resultTestTitle.textContent = `Test Results: ${data.results.test_id}`;
+            resultPercentage.textContent = `${Math.round(data.results.percentage)}%`;
+            resultTotalScore.textContent = data.results.total_score;
+            resultMaxScore.textContent = data.results.max_score;
+            
+            // Clear previous results
+            resultsTableBody.innerHTML = '';
+            
+            // Add each question result
+            data.results.questions_results.forEach(result => {
+                const row = document.createElement('tr');
+                
+                // Question number
+                const numCell = document.createElement('td');
+                numCell.textContent = result.question_number;
+                row.appendChild(numCell);
+                
+                // Evaluation status
+                const evalCell = document.createElement('td');
+                const evalStatus = document.createElement('span');
+                evalStatus.className = `status-badge ${result.evaluation}`;
+                evalStatus.textContent = formatEvaluationStatus(result.evaluation);
+                evalCell.appendChild(evalStatus);
+                row.appendChild(evalCell);
+                
+                // Feedback
+                const feedbackCell = document.createElement('td');
+                feedbackCell.textContent = result.feedback || 'No feedback provided';
+                row.appendChild(feedbackCell);
+                
+                // Action button
+                const actionCell = document.createElement('td');
+                const viewButton = document.createElement('button');
+                viewButton.className = 'view-answer-btn secondary-btn';
+                viewButton.textContent = 'View Answer';
+                viewButton.setAttribute('data-test-id', data.results.test_id);
+                viewButton.setAttribute('data-question-id', result.question_id);
+                actionCell.appendChild(viewButton);
+                row.appendChild(actionCell);
+                
+                resultsTableBody.appendChild(row);
+            });
+            
+            // Show results section
+            testResults.classList.remove('hidden');
+        }
+        
+        /**
+         * Format evaluation status for display
+         */
+        function formatEvaluationStatus(status) {
+            switch (status) {
+                case 'correct': return 'Correct';
+                case 'wrong': return 'Incorrect';
+                case 'partially_correct': return 'Partially Correct';
+                case 'not_answered': return 'Not Answered';
+                default: return status;
+            }
+        }
+        
+        /**
+         * Show expected answer for a question
+         */
+        async function showExpectedAnswer(testId, questionId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/get-expected-answer`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        test_id: testId,
+                        question_id: questionId
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Populate modal
+                    document.getElementById('modal-question-text').textContent = data.question_text;
+                    
+                    // Convert markdown for answer and explanation
+                    const converter = new showdown.Converter();
+                    
+                    const answerText = document.getElementById('modal-answer-text');
+                    answerText.innerHTML = converter.makeHtml(data.correct_answer);
+                    
+                    const explanationText = document.getElementById('modal-explanation-text');
+                    explanationText.innerHTML = converter.makeHtml(data.explanation);
+                    
+                    // Show modal
+                    document.getElementById('answer-modal').classList.remove('hidden');
+                    
+                    // Handle code highlighting if present
+                    document.querySelectorAll('#modal-answer-text pre code').forEach(block => {
+                        hljs.highlightElement(block);
+                    });
+                } else {
+                    alert(`Error: ${data.error || 'Failed to get answer details'}`);
+                }
+            } catch (error) {
+                console.error('Get answer error:', error);
+                alert('Failed to connect to the server. Please try again later.');
+            }
+        }
+        
+        /**
+         * Debug code submitted by the user
+         */
+        async function debugCode() {
+            const code = document.getElementById('code-input').value.trim();
+            const language = document.getElementById('code-language').value;
+            
+            if (!code) {
+                alert('Please enter code to debug');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('debug-loading').classList.remove('hidden');
+            document.getElementById('debug-result').classList.add('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/debug-code`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        code,
+                        language
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayDebugResults(data, language);
+                } else {
+                    alert(`Error: ${data.error || 'Failed to debug code'}`);
+                }
+            } catch (error) {
+                console.error('Debug error:', error);
+                alert('Failed to connect to the server. Please try again later.');
+            } finally {
+                document.getElementById('debug-loading').classList.add('hidden');
+            }
+        }
+        
+        /**
+         * Display debugging results
+         */
+        function displayDebugResults(data, language) {
+            const debugResult = document.getElementById('debug-result');
+            const issuesList = document.getElementById('debug-issues-list');
+            const originalCode = document.getElementById('original-code');
+            const debuggedCode = document.getElementById('debugged-code');
+            const explanationText = document.getElementById('debug-explanation-text');
+            
+            // Clear previous issues
+            issuesList.innerHTML = '';
+            
+            // Add each issue
+            data.issues.forEach(issue => {
+                const li = document.createElement('li');
+                li.textContent = issue;
+                issuesList.appendChild(li);
+            });
+            
+            // Set original and debugged code with syntax highlighting
+            originalCode.className = `language-${language}`;
+            originalCode.textContent = data.original_code;
+            
+            debuggedCode.className = `language-${language}`;
+            debuggedCode.textContent = data.debugged_code;
+            
+            // Set explanation
+            const converter = new showdown.Converter();
+            explanationText.innerHTML = converter.makeHtml(data.explanation);
+            
+            // Apply syntax highlighting
+            hljs.highlightElement(originalCode);
+            hljs.highlightElement(debuggedCode);
+            
+            // Show result
+            debugResult.classList.remove('hidden');
+        }
+      });
+      // Store conversation state
+let currentAgent = null;
+let conversationHistory = [];
+
+// Add event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners to agent items
+    const agentItems = document.querySelectorAll('.agent-item');
+    agentItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const agentType = this.getAttribute('data-agent');
+            openConversation(agentType);
+        });
+    });
+
+    // Add event listener for closing conversation
+    document.getElementById('close-conversation').addEventListener('click', function() {
+        document.getElementById('agent-conversation').style.display = 'none';
+    });
+
+    // Add event listener for sending message
+    document.getElementById('send-message').addEventListener('click', sendMessage);
+    
+    // Allow sending message with Enter key
+    document.getElementById('user-message').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+});
+
+// Function to open conversation with specific agent
+function openConversation(agentType) {
+    currentAgent = agentType;
+    conversationHistory = [];
+    
+    // Clear previous messages
+    document.getElementById('conversation-messages').innerHTML = '';
+    
+    // Update agent title
+    let agentTitle = 'Agent';
+    if (agentType === 'theory') {
+        agentTitle = 'Theory Agent';
+    } else if (agentType === 'planner') {
+        agentTitle = 'Planner Agent';
+    } else if (agentType === 'test') {
+        agentTitle = 'Test Agent';
+    }
+    document.getElementById('conversation-agent-title').textContent = agentTitle;
+    
+    // Show conversation UI
+    document.getElementById('agent-conversation').style.display = 'flex';
+    
+    // Add welcome message
+    addAgentMessage(`Hi! I'm the ${agentTitle}. How can I help you today?`);
+    
+    // Focus on input field
+    document.getElementById('user-message').focus();
+}
+
+// Function to send a message
+async function sendMessage() {
+    const messageInput = document.getElementById('user-message');
+    const message = messageInput.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message to UI
+    addUserMessage(message);
+    
+    // Clear input field
+    messageInput.value = '';
+    
+    // Show typing indicator
+    showTypingIndicator();
+    
+    try {
+        // Prepare conversation history for API
+        const historyForAPI = conversationHistory.map(entry => {
+            const result = {};
+            if (entry.type === 'user') result.user = entry.text;
+            if (entry.type === 'agent') result.agent = entry.text;
+            return result;
+        });
+        
+        // Send request to backend
+        const response = await fetch(`${API_BASE_URL}/converse/${currentAgent}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                history: historyForAPI
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Hide typing indicator
+        hideTypingIndicator();
+        
+        // Add agent response to UI
+        addAgentMessage(data.response);
+        
+    } catch (error) {
+        console.error('Error sending message:', error);
+        hideTypingIndicator();
+        addAgentMessage('Sorry, there was an error processing your request. Please try again later.');
+    }
+}
+
+// Function to add user message to UI
+function addUserMessage(message) {
+    const messagesContainer = document.getElementById('conversation-messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message user-message';
+    messageElement.textContent = message;
+    messagesContainer.appendChild(messageElement);
+    
+    // Add to history
+    conversationHistory.push({
+        type: 'user',
+        text: message
+    });
+    
+    // Scroll to bottom
+    scrollToBottom();
+}
+
+// Function to add agent message to UI
+function addAgentMessage(message) {
+    const messagesContainer = document.getElementById('conversation-messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message agent-message';
+    
+    // Convert markdown to HTML if needed
+    if (typeof markdownToHtml === 'function') {
+        messageElement.innerHTML = markdownToHtml(message);
+    } else {
+        messageElement.textContent = message;
+    }
+    
+    messagesContainer.appendChild(messageElement);
+    
+    // Add to history
+    conversationHistory.push({
+        type: 'agent',
+        text: message
+    });
+    
+    // Scroll to bottom
+    scrollToBottom();
+}
+
+// Function to show typing indicator
+function showTypingIndicator() {
+    const messagesContainer = document.getElementById('conversation-messages');
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'typing-indicator';
+    typingIndicator.id = 'typing-indicator';
+    typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+    messagesContainer.appendChild(typingIndicator);
+    
+    // Scroll to bottom
+    scrollToBottom();
+}
+
+// Function to hide typing indicator
+function hideTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
+// Function to scroll to bottom of messages
+function scrollToBottom() {
+    const messagesContainer = document.getElementById('conversation-messages');
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+// Simple markdown to HTML converter (you can use a more robust library if needed)
+function markdownToHtml(markdown) {
+    // Convert bold
+    let html = markdown.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Convert italic
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    
+    // Convert code blocks
+    html = html.replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>');
+    
+    // Convert inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Convert lists
+    html = html.replace(/^\s*[\-\*]\s+(.*?)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>');
+    
+    // Convert line breaks
+    html = html.replace(/\n\n/g, '<br><br>');
+    
+    return html;
+}
+
+      </script>
+</body>
+</html>

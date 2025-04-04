@@ -1,0 +1,31 @@
+{
+  "test_id": "bf718f26-46a3-454c-84c5-37a46a123126",
+  "total_score": 120,
+  "max_score": 300,
+  "percentage": 40.0,
+  "questions_results": [
+    {
+      "question_id": "e1ad8212-19bf-414c-9f93-9b15a9511950",
+      "question_number": 1,
+      "evaluation": "correct",
+      "feedback": "Your answer is correct!",
+      "correct_answer": "Option A",
+      "score": 100
+    },
+    {
+      "question_id": "65198a1a-5c2b-48df-b1a9-f24ccf8a42a8",
+      "question_number": 2,
+      "evaluation": "partially_correct",
+      "feedback": "The student's answer is technically correct in stating that the `int` data type stores integers. However, it is far too brief and lacks depth.  The answer doesn't explain what an integer is (e.g., whole numbers, positive, negative, or zero),  the range of values an `int` can hold (which varies depending on the system's architecture),  or provide any examples of its usage in C++ code.  A more complete answer would elaborate on these aspects and demonstrate a basic understanding of the `int` data type's significance in programming.  For example, mentioning its use in variables for counting, indexing arrays, or storing numerical data would significantly enhance the response.  The current answer shows only a surface-level understanding.",
+      "correct_answer": "A model answer would discuss key points, principles, and examples.",
+      "score": 20
+    },
+    {
+      "question_id": "f48ff0be-d8a6-4de7-971a-d051273dfb41",
+      "question_number": 3,
+      "evaluation": "not_answered",
+      "correct_answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "score": 0
+    }
+  ]
+}

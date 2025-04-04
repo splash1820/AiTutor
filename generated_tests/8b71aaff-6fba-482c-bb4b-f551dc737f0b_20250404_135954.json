@@ -1,0 +1,57 @@
+{
+  "title": "Test on basic java",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "6c3cdc5a-a8a5-4e1b-a151-22684e552ca4",
+      "type": "mcq",
+      "text": "Question about basic java",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "81492ae2-8a8a-4062-b088-18826a70c043",
+      "type": "descriptive",
+      "text": "Explain the concept of basic java",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "c985cb2f-d8f1-488b-93d9-3aa56ad42de4",
+      "type": "code",
+      "text": "Write a function related to basic java",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "583a323f-f18a-4575-9098-d9cbc4d16689",
+      "type": "mcq",
+      "text": "Question about basic java",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "d110840f-5560-4798-ae5f-fd8b657d2d9f",
+      "type": "descriptive",
+      "text": "Explain the concept of basic java",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "test_id": "630e870a-0c81-45ef-a0a4-60db82609450",
+  "total_score": 0,
+  "max_score": 300,
+  "percentage": 0.0,
+  "questions_results": [
+    {
+      "question_id": "802aaac3-dc58-4ffd-89c8-bb3ea2a111fb",
+      "question_number": 1,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: Option A",
+      "correct_answer": "Option A",
+      "score": 0
+    },
+    {
+      "question_id": "4cb1a0e3-11aa-4d98-bd39-a4446ddd5ba1",
+      "question_number": 2,
+      "evaluation": "wrong",
+      "feedback": "The answer 'dom is everything' is completely inaccurate and demonstrates a lack of understanding of the DOM.  The DOM (Document Object Model) is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content.  Your answer is far too simplistic and doesn't reflect any knowledge of what the DOM actually is or how it works. To improve, study the definition and functionality of the DOM in JavaScript, focusing on how it represents HTML elements as objects and allows manipulation through JavaScript.  Consider explaining concepts like nodes, node tree, traversing the DOM, and common DOM methods.",
+      "correct_answer": "A model answer would discuss key points, principles, and examples.",
+      "score": 0
+    },
+    {
+      "question_id": "9f62af65-4440-4ecc-98c7-86cad9cb45b5",
+      "question_number": 3,
+      "evaluation": "wrong",
+      "feedback": "The student's submission is completely inadequate.  The response 'don't know' indicates a lack of attempt to solve the problem.  There is no code provided to evaluate for correctness, style, efficiency, or handling of edge cases.  The test cases are also not helpful without a functional code submission.",
+      "correct_answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "score": 0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "test_id": "109d1620-bdaf-4a9b-ae65-9d5bdbeaa82b",
+  "total_score": 100,
+  "max_score": 300,
+  "percentage": 33.33333333333333,
+  "questions_results": [
+    {
+      "question_id": "47529995-895c-420f-8c94-876d86547d02",
+      "question_number": 1,
+      "evaluation": "correct",
+      "feedback": "Your answer is correct!",
+      "correct_answer": "Option A",
+      "score": 100
+    },
+    {
+      "question_id": "f6549770-b240-464f-aa14-7592b36bad19",
+      "question_number": 2,
+      "evaluation": "not_answered",
+      "correct_answer": "A model answer would discuss key points, principles, and examples.",
+      "score": 0
+    },
+    {
+      "question_id": "80a5b0e0-7cb1-47e4-b063-0d3f9994717b",
+      "question_number": 3,
+      "evaluation": "not_answered",
+      "correct_answer": "def solution():\n    # A sample solution\n    return 'result'",
+      "score": 0
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "title": "Test on Basics of java",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "b037c3e1-c0b1-456b-b9fb-8ed7160febb7",
+      "type": "mcq",
+      "text": "Which statement regarding Java's garbage collection is MOST accurate?",
+      "options": [
+        "Garbage collection in Java guarantees zero performance overhead.",
+        "The programmer explicitly deallocates memory using the `delete` keyword.",
+        "Garbage collection automatically reclaims memory occupied by objects that are no longer reachable, but the timing is not precisely predictable.",
+        "Garbage collection prevents memory leaks entirely, eliminating the need for careful memory management."
+      ],
+      "answer": "Garbage collection automatically reclaims memory occupied by objects that are no longer reachable, but the timing is not precisely predictable.",
+      "explanation": "Garbage collection in Java is a crucial feature that automatically manages memory.  While it significantly reduces the risk of memory leaks and simplifies programming, it doesn't eliminate them entirely (D is incorrect).  It also introduces some performance overhead, though the Java Virtual Machine (JVM) is optimized to minimize this (A is incorrect).  Finally, Java doesn't use `delete` for memory management (B is incorrect). Option C accurately reflects that garbage collection happens automatically for unreachable objects but the exact timing is non-deterministic and depends on the JVM's implementation."
+    },
+    {
+      "id": "dc14589a-fd8b-4374-b90f-bdc6da8e6693",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions, such as null or empty input arrays.  If the input array contains no even numbers, return an empty array.",
+      "answer": "```java\nimport java.util.Arrays;\nimport java.util.ArrayList;\nimport java.util.List;\n\nclass EvenNumbers {\n\n    public static int[] getEvenNumbers(int[] arr) {\n        if (arr == null || arr.length == 0) {\n            return new int[0]; // Return an empty array for null or empty input\n        }\n\n        List<Integer> evenList = new ArrayList<>();\n        for (int num : arr) {\n            if (num % 2 == 0) {\n                evenList.add(num);\n            }\n        }\n\n        //Convert List<Integer> to int[]\n        int[] evenArray = new int[evenList.size()];\n        for (int i = 0; i < evenList.size(); i++) {\n            evenArray[i] = evenList.get(i);\n        }\n\n        return evenArray;\n    }\n\n    public static void main(String[] args) {\n        int[] arr1 = {1, 2, 3, 4, 5, 6};\n        int[] evenArr1 = getEvenNumbers(arr1);\n        System.out.println(Arrays.toString(evenArr1)); // Output: [2, 4, 6]\n\n        int[] arr2 = {1, 3, 5, 7};\n        int[] evenArr2 = getEvenNumbers(arr2);\n        System.out.println(Arrays.toString(evenArr2)); // Output: []\n\n        int [] arr3 = {};\n        int[] evenArr3 = getEvenNumbers(arr3);\n        System.out.println(Arrays.toString(evenArr3)); // Output: []\n\n        int [] arr4 = null;\n        int[] evenArr4 = getEvenNumbers(arr4);\n        System.out.println(Arrays.toString(evenArr4)); // Output: []\n\n    }\n}\n```",
+      "test_cases": [
+        "Input: {1, 2, 3, 4, 5, 6}  Expected Output: {2, 4, 6}",
+        "Input: {1, 3, 5, 7}  Expected Output: {} (empty array)"
+      ],
+      "explanation": "The Java code iterates through the input integer array.  It checks if each number is even using the modulo operator (`%`). If a number is even, it's added to an ArrayList. Finally, the ArrayList is converted into an integer array and returned.  The code also includes robust error handling for null or empty input arrays."
+    },
+    {
+      "id": "f3e08828-f85a-411f-aeeb-0fa4d25fd5e6",
+      "type": "descriptive",
+      "text": "Explain the concept of garbage collection in Java, detailing its purpose, how it works (at a high level), and the implications for memory management and program performance.  Provide examples to illustrate when garbage collection might occur and when it might not.",
+      "answer": "Garbage collection in Java is an automatic memory management mechanism that reclaims memory occupied by objects that are no longer reachable by the program.  Its primary purpose is to prevent memory leaks and simplify memory management for developers.  Instead of manually allocating and deallocating memory like in C or C++, Java's runtime environment automatically identifies and removes unused objects.\n\nAt a high level, the garbage collector employs several algorithms (the specific algorithm used varies across Java Virtual Machine implementations), but they generally involve these steps:\n\n1. **Marking:** The garbage collector identifies all objects that are reachable from the program's root objects (e.g., static variables, local variables currently in use on the stack, and objects referenced by active threads).  Objects that are not reachable are marked as garbage.\n\n2. **Sweeping:** The garbage collector reclaims the memory occupied by the marked garbage objects.  This might involve compacting the remaining live objects to reduce memory fragmentation.\n\n3. **Finalization (Optional):**  The garbage collector might execute the `finalize()` method of objects before reclaiming their memory.  This method, if defined by a class, provides a chance for an object to perform cleanup tasks before it's destroyed. However, relying on `finalize()` is generally discouraged due to its unpredictability.\n\nThe implications for memory management are significant.  Developers don't need to worry about explicitly deallocating memory, reducing the risk of memory leaks and dangling pointers.  This simplifies development and makes code more robust.  However, garbage collection can impact performance. The process itself consumes CPU cycles and can pause program execution (though modern garbage collectors employ sophisticated techniques to minimize these pauses).  The pauses, called \"stop-the-world\" pauses, can be noticeable for applications with stringent real-time requirements.\n\n**Examples:**\n\n* **Garbage Collection:** An object created inside a method will be garbage collected once the method completes, as the local reference to the object is no longer accessible. Similarly, if all references to an object are nullified, it becomes eligible for garbage collection.\n\n* **No Garbage Collection (until eligible):** Static variables and objects referenced from static variables are not garbage collected unless the program terminates.  Objects involved in strong references (like references between objects) remain in memory until those referencing objects are themselves eligible for garbage collection.  Circular references where objects refer to each other but are not accessible from the root set will also eventually be garbage collected.",
+      "explanation": "A good answer should include these key points: * Definition of garbage collection in Java\n* Purpose of garbage collection (preventing memory leaks)\n* High-level explanation of the garbage collection process (marking, sweeping, finalization)\n* Impact on memory management (simplification, reduced risk of leaks)\n* Impact on performance (potential pauses, stop-the-world pauses)\n* Examples of when garbage collection occurs and when it doesn't (using local vs. static variables, strong references, circular references)\n* Mention of finalize() method (and the recommendation against relying on it heavily)"
+    },
+    {
+      "id": "099b504f-54c1-43e2-99e6-6c286c78a5f0",
+      "type": "mcq",
+      "text": "Which statement regarding Java's garbage collection is TRUE?",
+      "options": [
+        "Garbage collection guarantees zero performance overhead.",
+        "The programmer explicitly specifies which objects are to be garbage collected.",
+        "Garbage collection automatically reclaims memory occupied by unreachable objects, improving memory management.",
+        "Java's garbage collector always runs immediately when memory is low."
+      ],
+      "answer": "Garbage collection automatically reclaims memory occupied by unreachable objects, improving memory management.",
+      "explanation": "Garbage collection in Java automatically reclaims memory occupied by objects that are no longer reachable by the program.  This prevents memory leaks and simplifies memory management for the programmer. Options A and D are false because garbage collection *does* have performance overhead (though usually minimal), and it doesn't always run instantly when memory is low; it runs periodically based on various heuristics. Option B is false because the programmer does not directly control when or which objects are garbage collected."
+    },
+    {
+      "id": "db88fd5c-9d02-439f-b47d-aca29379eaab",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions (like `NullPointerException`) gracefully and return an empty array if the input is null or contains no even numbers.  The solution should be implemented in Java, but the test cases can be in Python for simplicity.",
+      "answer": "```java\nimport java.util.Arrays;\nimport java.util.ArrayList;\nimport java.util.List;\n\nclass EvenNumberFilter {\n\n    public static int[] getEvenNumbers(int[] arr) {\n        if (arr == null) {\n            return new int[0]; //Return empty array for null input\n        }\n\n        List<Integer> evenNumbers = new ArrayList<>();\n        for (int num : arr) {\n            if (num % 2 == 0) {\n                evenNumbers.add(num);\n            }\n        }\n\n        if(evenNumbers.isEmpty()){\n            return new int[0]; //Return empty array if no even numbers found\n        }\n\n        int[] result = new int[evenNumbers.size()];\n        for (int i = 0; i < evenNumbers.size(); i++) {\n            result[i] = evenNumbers.get(i);\n        }\n        return result;\n    }\n}\n```",
+      "test_cases": [
+        "```python\nimport unittest\nfrom unittest.mock import patch\nfrom io import StringIO\n\nclass TestEvenNumberFilter(unittest.TestCase):\n\n    @patch('sys.stdout', new_callable=StringIO)\n    def test_case1(self, stdout):\n        input_array = [1, 2, 3, 4, 5, 6]\n        expected_output = [2, 4, 6]\n        # Simulate Java execution and capture output (replace with your actual Java execution method)\n        # In a real scenario, you would run the Java code and capture its output.\n        # This is a simplified Python-based test.\n        actual_output = [2,4,6] # Replace with your actual output capturing method.\n        self.assertEqual(actual_output, expected_output)\n\nif __name__ == '__main__':\n    unittest.main(argv=['first-arg-is-ignored'], exit=False)\n\n```",
+        "```python\nimport unittest\nfrom unittest.mock import patch\nfrom io import StringIO\n\nclass TestEvenNumberFilter(unittest.TestCase):\n\n    @patch('sys.stdout', new_callable=StringIO)\n    def test_case2(self, stdout):\n        input_array = [1, 3, 5, 7]\n        expected_output = []\n        # Simulate Java execution and capture output (replace with your actual Java execution method)\n        actual_output = [] # Replace with your actual output capturing method.\n        self.assertEqual(actual_output, expected_output)\n\nif __name__ == '__main__':\n    unittest.main(argv=['first-arg-is-ignored'], exit=False)\n```"
+      ],
+      "explanation": "The Java code first checks for a null input array. If the input is null, it returns an empty integer array. Otherwise, it iterates through the input array. For each number, it checks if it's even using the modulo operator (`%`). If it's even, the number is added to an `ArrayList`. Finally, the `ArrayList` is converted into an integer array and returned.  The code also handles the case where no even numbers are present in the input array."
+    }
+  ]
+}

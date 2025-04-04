@@ -1,0 +1,61 @@
+{
+  "title": "Test on intro to python",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "7c0fcab3-a635-4e82-bea3-70b7c228a383",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nmy_list = [1, 2, 3, 4, 5]\nnew_list = [x**2 for x in my_list if x % 2 != 0]\nprint(new_list)\n```",
+      "options": [
+        "`[1, 4, 9, 16, 25]`",
+        "`[1, 9, 25]`",
+        "`[2, 4]`",
+        "`[1, 2, 3, 4, 5]`"
+      ],
+      "answer": "`[1, 9, 25]`",
+      "explanation": "The code uses a list comprehension to create a new list.  It iterates through `my_list`. The `if x % 2 != 0` condition checks if the number is odd. If it's odd, it squares the number (`x**2`) and adds it to `new_list`. Therefore, only 1, 3, and 5 (the odd numbers) are squared and included in `new_list`, resulting in `[1, 9, 25]`."
+    },
+    {
+      "id": "3266fecb-baf2-4f75-83f0-a8261c82c4b9",
+      "type": "code",
+      "text": "Write a Python function called `count_vowels_and_consonants` that takes a single string argument (text) and returns a dictionary containing the counts of vowels (a, e, i, o, u) and consonants in the input string.  The function should be case-insensitive and ignore non-alphabetic characters.",
+      "answer": "def count_vowels_and_consonants(text):\n    vowels = \"aeiouAEIOU\"\n    vowel_count = 0\n    consonant_count = 0\n    for char in text:\n        if char.isalpha():\n            if char in vowels:\n                vowel_count += 1\n            else:\n                consonant_count += 1\n    return {\"vowels\": vowel_count, \"consonants\": consonant_count}",
+      "test_cases": [
+        "Input: \"Hello, World!\"\nOutput: {'vowels': 3, 'consonants': 7}",
+        "Input: \"This is a Test string.\"\nOutput: {'vowels': 6, 'consonants': 11}"
+      ],
+      "explanation": "The function initializes vowel and consonant counts to 0. It iterates through each character in the input string. If the character is an alphabet, it checks if it's a vowel; if so, the vowel count increments; otherwise, the consonant count increments. Finally, it returns a dictionary containing both counts.  The `isalpha()` method ensures that only alphabetical characters are counted, making it case-insensitive."
+    },
+    {
+      "id": "8e2a1d26-6df7-4bb3-bf3f-afe5fc748ea2",
+      "type": "descriptive",
+      "text": "Describe the fundamental differences between lists and tuples in Python, providing examples to illustrate their distinct characteristics and when you might choose to use one over the other.  Explain how these differences impact mutability and potential use cases.",
+      "answer": "Lists and tuples are both fundamental sequence data types in Python used to store collections of items. However, they differ significantly in their mutability, which profoundly impacts their usage.\n\nLists are mutable sequences, meaning their elements can be changed after creation.  You can add, remove, or modify elements within a list.  This flexibility makes them ideal for scenarios where the collection's contents might need to be updated dynamically.\n\nTuples, on the other hand, are immutable sequences. Once a tuple is created, its elements cannot be changed. This immutability provides certain advantages, such as data integrity and potential performance benefits in some situations because Python can optimize their memory usage.\n\nHere's an example demonstrating the difference:\n\n```python\nmy_list = [1, 2, 3]\nmy_tuple = (1, 2, 3)\n\nmy_list[0] = 10  # This is allowed, modifying the list\nprint(my_list)  # Output: [10, 2, 3]\n\n# my_tuple[0] = 10  # This will raise a TypeError: 'tuple' object does not support item assignment\n\nmy_list.append(4) #Adding to a list\nprint(my_list) # Output: [10, 2, 3, 4]\n\n# my_tuple.append(4) #This will raise an AttributeError: 'tuple' object has no attribute 'append'\n```\n\nChoosing between lists and tuples depends on the specific application.  Use lists when you need a dynamic collection whose contents may change.  Use tuples when data integrity is paramount and you want to ensure that the collection remains unchanged after its creation.  Tuples are also often used as dictionary keys because they are hashable (unlike lists).  Furthermore, tuples can be slightly more memory-efficient than lists, especially for large collections.",
+      "explanation": "A good answer should include these key points: * **Mutability:**  Clearly define and contrast the mutability of lists (mutable) and tuples (immutable).\n* **Examples:** Provide concrete Python code examples showcasing the differences in modifying list and tuple elements.  Illustrate attempts to modify a tuple element which result in a `TypeError`.\n* **Use Cases:** Explain scenarios where the choice between lists and tuples is advantageous. (e.g., lists for dynamic collections, tuples for data integrity).\n* **Hashability:** Briefly mention tuples' hashability and its relevance to dictionary keys.\n* **Memory Efficiency:** Briefly touch on the potential memory efficiency differences, particularly with larger collections.  (This is a less crucial point than the others, but adds completeness)."
+    },
+    {
+      "id": "43a8cbe9-0424-4082-98b3-9ea3fc0874a1",
+      "type": "mcq",
+      "text": "What will be the output of the following Python code snippet?\n\n```python\nmy_list = [1, 2, 3, 4, 5]\nnew_list = my_list[1:4:2]\nprint(new_list)\n```",
+      "options": [
+        "`[1, 3, 5]`",
+        "`[2, 4]`",
+        "`[1, 2, 3, 4]`",
+        "`[2, 3]`"
+      ],
+      "answer": "`[2, 4]`",
+      "explanation": "The list slicing `my_list[1:4:2]` selects elements from index 1 up to (but not including) index 4, with a step of 2.  This means it starts at index 1 (value 2), skips index 2, and takes the element at index 3 (value 4).  Therefore, the resulting list is `[2, 4]`."
+    },
+    {
+      "id": "4f22f38c-0944-4374-b6fd-347825e788d1",
+      "type": "code",
+      "text": "Write a Python function that takes a list of strings as input and returns a new list containing only the strings that start with a vowel (a, e, i, o, u).  The function should be case-insensitive, meaning that strings starting with uppercase vowels should also be included.",
+      "answer": "def filter_vowel_strings(string_list):\n    \"\"\"\n    Filters a list of strings to return only those starting with a vowel.\n\n    Args:\n      string_list: A list of strings.\n\n    Returns:\n      A new list containing only the strings that start with a vowel (a, e, i, o, u), case-insensitive.  Returns an empty list if the input is invalid or no strings start with a vowel.\n    \"\"\"\n    vowels = \"aeiouAEIOU\"\n    if not isinstance(string_list, list):\n        return []  # Handle invalid input\n    \n    filtered_list = [s for s in string_list if s and s[0] in vowels]\n    return filtered_list",
+      "test_cases": [
+        "Input: `[\"apple\", \"banana\", \"Orange\", \"kiwi\", \"Avocado\"]`\nOutput: `['apple', 'Orange', 'Avocado']`",
+        "Input: `[\"123\", \"Elephant\", \"\", \"umbrella\", \"EGG\"]`\nOutput: `['Elephant', 'umbrella', 'EGG']`"
+      ],
+      "explanation": "The function first checks if the input is a list. If not, it returns an empty list to handle potential errors.  It then uses a list comprehension for efficiency. The list comprehension iterates through each string in the input list. It checks if the string is not empty and if the first character (accessed using `s[0]`) is present in the `vowels` string (which contains both lowercase and uppercase vowels). Only strings satisfying this condition are included in the `filtered_list`, which is then returned."
+    }
+  ]
+}

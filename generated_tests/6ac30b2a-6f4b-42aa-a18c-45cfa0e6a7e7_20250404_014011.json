@@ -1,0 +1,65 @@
+{
+  "title": "Introduction to Fibonacci Sequence in Java",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": 1,
+      "type": "mcq",
+      "text": "What is the next number in the Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8?",
+      "options": [
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "answer": "13",
+      "explanation": "Each number is the sum of the two preceding ones. 5 + 8 = 13"
+    },
+    {
+      "id": 2,
+      "type": "code",
+      "text": "Write a Java code snippet that calculates the 5th Fibonacci number (starting from 0).",
+      "answer": "long a = 0, b = 1, c; \nfor(int i=0; i< 5; i++){\n    c = a + b; \n    a = b; \n    b = c;}\nSystem.out.println(a);",
+      "test_cases": [
+        {
+          "input": "",
+          "expected_output": "3"
+        }
+      ],
+      "explanation": "The code iteratively calculates Fibonacci numbers.  After 4 iterations (starting from 0,1), 'a' will hold the 5th number."
+    },
+    {
+      "id": 3,
+      "type": "descriptive",
+      "text": "Explain the purpose of the `Scanner` class in the provided Java Fibonacci code and how it's used.",
+      "answer": "The `Scanner` class is used to get user input from the console.  In the Fibonacci code, it's used to prompt the user to enter the desired number of terms in the sequence. The `nextInt()` method reads an integer from the input.",
+      "explanation": "The `Scanner` allows interaction with the user; without it, the number of Fibonacci numbers to generate would be hardcoded."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "text": "Why is the `long` data type preferred over `int` for storing Fibonacci numbers in the provided code?",
+      "options": [
+        "Long is faster than int",
+        "Long can store larger values than int, preventing overflow for larger Fibonacci numbers",
+        "Long requires less memory than int",
+        "Long is always preferred in Fibonacci calculations"
+      ],
+      "answer": "Long can store larger values than int, preventing overflow for larger Fibonacci numbers",
+      "explanation": "Fibonacci numbers grow rapidly; `long` has a larger range to handle larger numbers without exceeding its limits (integer overflow)."
+    },
+    {
+      "id": 5,
+      "type": "code",
+      "text": "Modify the given Java code to print the Fibonacci sequence until a number exceeds 100.",
+      "answer": "import java.util.Scanner;\n\npublic class Fibonacci {\n    public static void main(String[] args) {\n        long a = 0, b = 1, c;\n        System.out.print(\"Fibonacci Series: \");\n        System.out.print(a + \" \");\n        System.out.print(b + \" \");\n        while (b <= 100) {\n            c = a + b;\n            System.out.print(c + \" \");\n            a = b;\n            b = c;\n        }\n        System.out.println();\n    }\n}",
+      "test_cases": [
+        {
+          "input": "",
+          "expected_output": "Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 55 89 "
+        }
+      ],
+      "explanation": "This solution uses a `while` loop that continues as long as the current Fibonacci number (`b`) is less than or equal to 100."
+    }
+  ]
+}

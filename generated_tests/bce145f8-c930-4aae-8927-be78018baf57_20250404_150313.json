@@ -1,0 +1,61 @@
+{
+  "title": "Test on basics of java",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "044f9fa1-e6f3-42ea-a5cb-a35210857ae5",
+      "type": "mcq",
+      "text": "Which of the following statements is true regarding the difference between `int` and `Integer` in Java?",
+      "options": [
+        "`int` is a primitive data type, while `Integer` is a wrapper class; they are interchangeable in all contexts.",
+        "`int` is an object, while `Integer` is a primitive data type; `Integer` requires more memory.",
+        "`int` is a primitive data type, while `Integer` is a wrapper class; `Integer` can be null, but `int` cannot.",
+        "`int` and `Integer` are functionally identical, only differing in their internal representation."
+      ],
+      "answer": "`int` is a primitive data type, while `Integer` is a wrapper class; `Integer` can be null, but `int` cannot.",
+      "explanation": "`int` is a primitive data type that directly stores the integer value, while `Integer` is a wrapper class that encapsulates an `int` value as an object.  This object nature allows `Integer` variables to hold a `null` value, which is not possible with the primitive `int`.  The other options incorrectly describe the relationship or capabilities of these types."
+    },
+    {
+      "id": "3d2faab2-8a07-4cff-8fab-85cffaf9986a",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions, such as null or empty input arrays, gracefully by returning an empty array in such cases.  The solution should utilize Java's streams API for efficient processing.",
+      "answer": "```java\nimport java.util.Arrays;\nimport java.util.stream.IntStream;\n\nclass EvenNumberFilter {\n\n    public static int[] getEvenNumbers(int[] arr) {\n        if (arr == null || arr.length == 0) {\n            return new int[0]; // Return empty array for null or empty input\n        }\n\n        return Arrays.stream(arr)\n                .filter(n -> n % 2 == 0)\n                .toArray();\n    }\n\n    public static void main(String[] args) {\n        int[] arr1 = {1, 2, 3, 4, 5, 6};\n        int[] evenArr1 = getEvenNumbers(arr1);\n        System.out.println(Arrays.toString(evenArr1)); // Output: [2, 4, 6]\n\n        int[] arr2 = {};\n        int[] evenArr2 = getEvenNumbers(arr2);\n        System.out.println(Arrays.toString(evenArr2)); // Output: []\n\n        int[] arr3 = null;\n        int[] evenArr3 = getEvenNumbers(arr3);\n        System.out.println(Arrays.toString(evenArr3)); // Output: []\n\n        int[] arr4 = {7,9,11,13};\n        int[] evenArr4 = getEvenNumbers(arr4);\n        System.out.println(Arrays.toString(evenArr4)); // Output: []\n\n    }\n}\n```",
+      "test_cases": [
+        "Input: `{1, 2, 3, 4, 5, 6}`.  Expected Output: `{2, 4, 6}`",
+        "Input: `{}` (empty array). Expected Output: `{}` (empty array)"
+      ],
+      "explanation": "The solution uses Java's streams API to efficiently filter the input array.  `Arrays.stream(arr)` creates a stream from the input array.  `.filter(n -> n % 2 == 0)` filters the stream, keeping only even numbers.  `.toArray()` converts the resulting stream back into an integer array.  The code also includes robust error handling for null or empty input arrays."
+    },
+    {
+      "id": "1b4a0eb3-cb59-461d-983a-ea2589f2f103",
+      "type": "descriptive",
+      "text": "Explain the differences between `==` and `.equals()` when comparing objects in Java, providing examples to illustrate the scenarios where each should be used and the potential pitfalls of misusing them.  Discuss the importance of overriding the `equals()` method in custom classes.",
+      "answer": "In Java, both `==` and `.equals()` are used for comparison, but they operate differently and are suitable for different situations.  `==` compares the memory addresses of two objects (or the primitive values themselves).  It determines if two references point to the same object in memory.  `.equals()`, on the other hand, compares the content or state of two objects.  By default, it behaves the same as `==` for objects, but it can be overridden to provide a meaningful comparison based on the object's attributes.\n\nLet's illustrate with examples:\n\n```java\nString str1 = new String(\"hello\");\nString str2 = new String(\"hello\");\nString str3 = str1;\n\nSystem.out.println(str1 == str2); // Output: false (different memory addresses)\nSystem.out.println(str1.equals(str2)); // Output: true (same content)\nSystem.out.println(str1 == str3); // Output: true (same memory address)\n```\n\nHere, `str1` and `str2` are distinct objects with the same content. `==` returns `false` because they reside at different memory locations. However, `.equals()` correctly identifies their content as equal. `str1` and `str3` are references to the same object; thus, both `==` and `.equals()` return `true`.\n\n\nFor primitive data types (int, float, boolean, etc.), `==` directly compares their values.\n\nMisusing `==` to compare objects can lead to incorrect results.  It's crucial to use `.equals()` when comparing the content of objects.\n\nThe importance of overriding `equals()` in custom classes is paramount for ensuring correct comparisons.  If you don't override it, the default implementation (inherited from `Object`) will use `==`, comparing object references instead of the object's actual state.  When overriding `equals()`, several best practices must be followed, including:\n\n* **Reflexivity:** `x.equals(x)` should always return `true`.\n* **Symmetry:** `x.equals(y)` should return the same boolean value as `y.equals(x)`.\n* **Transitivity:** If `x.equals(y)` and `y.equals(z)` are both true, then `x.equals(z)` should also be true.\n* **Consistency:** Multiple invocations of `x.equals(y)` should consistently return the same result, provided that neither `x` nor `y` is modified.\n* **Nullity:** `x.equals(null)` should always return `false`.\n\n\nFor a robust class, you should also override `hashCode()` consistently with your `equals()` implementation; otherwise, issues can arise with using the class as a key in hash-based collections.",
+      "explanation": "A good answer should include these key points: * Difference between `==` (reference comparison) and `.equals()` (content comparison).\n* Examples illustrating the behavior of both operators with objects and primitives.\n* Pitfalls of using `==` for object comparison.\n* Importance of overriding `equals()` in custom classes.\n* Best practices for overriding `equals()` (reflexivity, symmetry, transitivity, consistency, nullity).\n* Importance of consistent overriding of `hashCode()` alongside `equals()`."
+    },
+    {
+      "id": "80b5d20f-8467-456a-ab0f-e6ecc4ca8fd3",
+      "type": "mcq",
+      "text": "Which statement regarding Java's garbage collection is FALSE?",
+      "options": [
+        "Garbage collection automatically reclaims memory occupied by objects that are no longer reachable.",
+        "The programmer explicitly controls when garbage collection occurs.",
+        "Garbage collection helps prevent memory leaks.",
+        "The frequency and timing of garbage collection can affect application performance."
+      ],
+      "answer": "The programmer explicitly controls when garbage collection occurs.",
+      "explanation": "The programmer does *not* explicitly control when garbage collection occurs.  It's an automatic process managed by the Java Virtual Machine (JVM). While you can suggest a garbage collection with `System.gc()`, there's no guarantee when (or if) it will actually run.  Options A, C, and D are all true statements about Java's garbage collection."
+    },
+    {
+      "id": "05016211-57a1-48b3-b486-03e1fca7b74d",
+      "type": "code",
+      "text": "Write a Java program that takes an integer array as input and returns a new array containing only the even numbers from the input array.  The program should handle potential exceptions (e.g., null input) gracefully and return an empty array in case of an invalid input or if no even numbers are found.  The solution should demonstrate good Java coding practices, including proper error handling and efficient array manipulation.",
+      "answer": "def get_even_numbers(arr):\n    \"\"\"\n    Extracts even numbers from an integer array.\n\n    Args:\n        arr: The input integer array.\n\n    Returns:\n        A new array containing only the even numbers from the input array, \n        or an empty array if the input is invalid or no even numbers are found.\n    \"\"\"\n    if arr is None:\n        return []\n\n    even_numbers = []\n    for num in arr:\n        if isinstance(num, int) and num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+      "test_cases": [
+        "Input:  [1, 2, 3, 4, 5, 6]\nExpected Output: [2, 4, 6]",
+        "Input:  [1, 3, 5, 7]  \nExpected Output: []"
+      ],
+      "explanation": "The Python function `get_even_numbers` first checks if the input array `arr` is None. If it is, an empty list is returned. Otherwise, it iterates through the array. For each element, it checks if it's an integer and even. If both conditions are true, the element is added to the `even_numbers` list. Finally, the function returns the `even_numbers` list.  A Java equivalent would involve similar logic using arrays and exception handling (e.g., a `NullPointerException` check)."
+    }
+  ]
+}

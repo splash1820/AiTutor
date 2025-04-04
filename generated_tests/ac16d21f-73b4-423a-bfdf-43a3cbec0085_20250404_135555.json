@@ -1,0 +1,57 @@
+{
+  "title": "Test on Introduction to C++",
+  "difficulty": "medium",
+  "questions": [
+    {
+      "id": "9f25b823-3673-43bc-9db8-f5b7cbcbd986",
+      "type": "mcq",
+      "text": "Question about Introduction to C++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "251b4841-e704-4051-b8ef-0ee035832b22",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to C++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    },
+    {
+      "id": "1fe63980-8e42-4219-b0c6-7ee8590984e3",
+      "type": "code",
+      "text": "Write a function related to Introduction to C++",
+      "answer": "def solution():\n    pass",
+      "test_cases": [
+        "Test case 1",
+        "Test case 2"
+      ],
+      "explanation": "Implement the function as per the problem statement."
+    },
+    {
+      "id": "b9fd497a-588f-425a-a40d-e24e94879677",
+      "type": "mcq",
+      "text": "Question about Introduction to C++",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      "answer": "Option A",
+      "explanation": "This is the correct answer because it accurately describes the concept."
+    },
+    {
+      "id": "092badee-909e-4a87-9fb2-223d113815c2",
+      "type": "descriptive",
+      "text": "Explain the concept of Introduction to C++",
+      "answer": "A detailed answer discussing key points and examples.",
+      "explanation": "A good answer covers definitions, examples, and practical applications."
+    }
+  ]
+}

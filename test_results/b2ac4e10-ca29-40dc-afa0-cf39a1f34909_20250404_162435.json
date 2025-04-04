@@ -1,0 +1,48 @@
+{
+  "test_id": "eb664935-0c81-40ea-bd8b-b42bc1c5329b",
+  "total_score": 0,
+  "max_score": 500,
+  "percentage": 0.0,
+  "questions_results": [
+    {
+      "question_id": "1d15df1a-7a8e-43d5-b4ce-ddf2e9303681",
+      "question_number": 1,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: C++ offers both automatic memory management (for local variables) and manual memory management (using `new` and `delete`) options.",
+      "correct_answer": "C++ offers both automatic memory management (for local variables) and manual memory management (using `new` and `delete`) options.",
+      "score": 0
+    },
+    {
+      "question_id": "1bc55758-20df-441a-9bfc-e49cb89eed32",
+      "question_number": 2,
+      "evaluation": "wrong",
+      "feedback": "The student's code submission is completely incorrect.  The submission 'dqfqw' is not valid Python code and does not attempt to solve the problem.  The code should implement the function `sum_even_numbers` as specified in the expected solution, including comprehensive error handling for invalid inputs (non-list input, non-integer size, negative size, size mismatch with array length) and a base case for an empty array. The code should iterate through the array and sum only the even numbers.  The student needs to write a functional Python program.",
+      "correct_answer": "def sum_even_numbers(arr, size):\n    \"\"\"\n    Calculates the sum of even numbers in an integer array.\n\n    Args:\n        arr: The integer array (represented as a list in Python).\n        size: The size of the array.\n\n    Returns:\n        The sum of even numbers in the array. Returns 0 if the array is empty or contains no even numbers.\n        Raises TypeError if input is not a list or size is not an integer.\n        Raises ValueError if size is negative or inconsistent with array length.\n\n    \"\"\"\n    if not isinstance(arr, list):\n        raise TypeError(\"Input must be a list.\")\n    if not isinstance(size, int):\n        raise TypeError(\"Size must be an integer.\")\n    if size < 0:\n        raise ValueError(\"Size cannot be negative.\")\n    if size != len(arr):\n        raise ValueError(\"Size is inconsistent with array length.\")\n\n    if size == 0:\n        return 0\n\n    sum_of_evens = 0\n    for num in arr:\n        if num % 2 == 0:\n            sum_of_evens += num\n    return sum_of_evens",
+      "score": 0
+    },
+    {
+      "question_id": "cfcc29f9-8fd6-4bae-b91f-c9115f8d5f95",
+      "question_number": 3,
+      "evaluation": "wrong",
+      "feedback": "The student's answer is completely inadequate.  'dwdq' provides no relevant information on memory management in C++, stack vs. heap allocation, or the mitigation of memory leaks and dangling pointers.  The answer demonstrates a complete lack of understanding of the concepts covered in the question.  The student needs to review the fundamental concepts of C++ memory management.",
+      "correct_answer": "C++ offers both stack and heap memory allocation, each with distinct characteristics impacting program design and performance.  The stack is a LIFO (Last-In, First-Out) data structure that automatically manages memory. Variables declared within functions are typically allocated on the stack.  Its advantage is speed and simplicity; allocation and deallocation are handled implicitly when the function scope ends. However, stack memory is limited in size.  Attempting to allocate excessively large structures on the stack leads to stack overflow.\n\nThe heap, on the other hand, is a dynamically allocated memory pool.  Memory on the heap is explicitly requested using `new` and released using `delete` (for single objects) or `new[]` and `delete[]` (for arrays).  This provides greater flexibility; you can allocate memory as needed during program execution and deallocate it when it's no longer required.  However, manual memory management on the heap introduces the risk of errors.\n\nChoosing between stack and heap depends on the context:\n\n* **Stack:** Prefer the stack for local variables with known, relatively small sizes.  Their automatic management simplifies the code and prevents memory leaks.  Example: `int x = 10;` (x is allocated on the stack within the function's scope).\n\n* **Heap:** Use the heap when the size of the data is unknown at compile time or if the data needs to persist beyond the scope of a function.  Example: `int* y = new int[n];` (allocates an array of integers on the heap; `n` is determined at runtime).  Remember to always `delete[] y;` when you are finished with it to avoid memory leaks.\n\n\nImproper memory management is a significant source of bugs in C++.  Memory leaks occur when dynamically allocated memory is no longer needed but not released, gradually consuming system resources. Dangling pointers arise when a pointer refers to memory that has already been deallocated, leading to unpredictable behavior.  Smart pointers (like `std::unique_ptr`, `std::shared_ptr`, and `std::weak_ptr`) are powerful tools to mitigate these issues by automating memory management and preventing dangling pointers.  RAII (Resource Acquisition Is Initialization) is a crucial principle; resources are acquired within constructors and released in destructors, guaranteeing resource cleanup even in exceptional situations.",
+      "score": 0
+    },
+    {
+      "question_id": "4cd5cbb0-5d1a-49d2-a7e3-bccc2b242827",
+      "question_number": 4,
+      "evaluation": "wrong",
+      "feedback": "Your answer is incorrect. The correct answer is: C++ provides both automatic memory management (for stack variables) and manual memory management (for heap variables using `new` and `delete`).",
+      "correct_answer": "C++ provides both automatic memory management (for stack variables) and manual memory management (for heap variables using `new` and `delete`).",
+      "score": 0
+    },
+    {
+      "question_id": "530d9f46-106f-450c-b58f-8ed8bc738527",
+      "question_number": 5,
+      "evaluation": "wrong",
+      "feedback": "The student's code submission is completely incorrect.  It only contains the characters \"wqs\", which is not a valid C++ program and does not attempt to solve the problem. The submission does not compile and does not produce any output.  The student needs to write a C++ function that takes an integer array and its size as input and returns a vector containing only the even numbers from the input array.  The code should correctly handle empty or all-odd input arrays.",
+      "correct_answer": "#include <iostream>\n#include <vector>\n\nstd::vector<int> getEvenNumbers(const int arr[], int size) {\n    std::vector<int> evenNumbers;\n    for (int i = 0; i < size; ++i) {\n        if (arr[i] % 2 == 0) {\n            evenNumbers.push_back(arr[i]);\n        }\n    }\n    return evenNumbers;\n}\n\nint main() {\n    //Example usage (not part of the function itself, for demonstration)\n    int arr1[] = {1, 2, 3, 4, 5, 6};\n    int size1 = sizeof(arr1) / sizeof(arr1[0]);\n    std::vector<int> evens1 = getEvenNumbers(arr1, size1);\n    for (int x : evens1) std::cout << x << \" \"; //Output: 2 4 6\n    std::cout << std::endl;\n\n    int arr2[] = {1, 3, 5, 7};\n    int size2 = sizeof(arr2) / sizeof(arr2[0]);\n    std::vector<int> evens2 = getEvenNumbers(arr2, size2);\n    for (int x : evens2) std::cout << x << \" \"; //Output: (nothing)\n    std::cout << std::endl;\n    return 0;\n}",
+      "score": 0
+    }
+  ]
+}
